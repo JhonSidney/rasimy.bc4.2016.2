@@ -3,11 +3,11 @@ package dados;
 import negocios.Pessoa;
 
 
-public class RepositorioPessoa {
+public class RepositorioCliente {
 
 	private Pessoa[] pessoas;
 	
-	public RepositorioPessoa (int banco){
+	public RepositorioCliente (int banco){
 		this.pessoas = new Pessoa[banco];
 	
 	}
