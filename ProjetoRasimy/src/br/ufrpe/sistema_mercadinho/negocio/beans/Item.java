@@ -10,9 +10,9 @@ public class Item {
 	private double precoCusto;
 	private double precoVenda;
 	private double pesoProduto;
-	
-	
-	
+
+
+
 	public Item(String codigoProduto, String nome, int quantidade,
 			String descricao, String categoria, double precoCusto,
 			double precoVenda, double pesoProduto) {
@@ -26,8 +26,8 @@ public class Item {
 		this.precoVenda = precoVenda;
 		this.pesoProduto = pesoProduto;
 	}
-	
-	
+
+
 	public String getCodigoProduto() {
 		return codigoProduto;
 	}
@@ -76,7 +76,29 @@ public class Item {
 	public void setPesoProduto(double pesoProduto) {
 		this.pesoProduto = pesoProduto;
 	}
+
+
+	public boolean equals(Item item){
+		boolean igual = false;
+		if(item != null && this.codigoProduto.equals(item.getCodigoProduto()) && this.nome.equals(item.getNome())
+				&& this.descricao.equals(item.getDescricao()) && this.categoria.equals(item.getCategoria())
+				&& this.precoVenda ==  item.precoVenda && this.pesoProduto == item.pesoProduto){
+			return true;
+		}
+		return false;
+	}
+
+	public String toString() {
+		return "Item [codigoProduto=" + codigoProduto + ", nome=" + nome
+				+ ", quantidade=" + quantidade + ", descricao=" + descricao
+				+ ", categoria=" + categoria + ", precoCusto=" + precoCusto
+				+ ", precoVenda=" + precoVenda + ", pesoProduto=" + pesoProduto
+				+ "]";
+	}
+
+
 	
 	
+
 
 }

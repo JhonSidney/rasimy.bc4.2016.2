@@ -50,17 +50,31 @@ public class Funcionario extends Pessoa{
 	}
 	
 	
-public boolean equals(Funcionario func){
+public boolean equals(Funcionario funcionario){
 	boolean igual = false;
-	if(func != null && senha.equals(func.getSenha())&& id.equals(func.getId())){
+	if(funcionario != null && this.funcao.equals(funcionario.getFuncao())
+			&& this.admissao.equals(funcionario.getAdmissao())  
+			&& this.salario == funcionario.getSalario() 
+			&& this.id.equals(funcionario.getId())){		
 		return true;
 	}
-
 	return igual;
 }
-	
-	
 
+public boolean existe(Funcionario funcionario){
+	boolean igual = false;
+	if(funcionario != null && this.id.equals(funcionario.getId())){		
+		return true;
+	}
+	return igual;
+}
+
+
+public String toString() {
+	return "Funcionario [funcao=" + funcao + ", admissao=" + admissao
+			+ ", demissao=" + demissao + ", senha=" + senha + ", salario="
+			+ salario + "]";
+}
 
 
 }

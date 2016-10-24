@@ -33,8 +33,9 @@ public class Administrador extends Pessoa {
 		return igual;
 	}
 	
-	
-	
+   public String toString(){
+	   return "Administrador [senha = " +senha +" ]";
+   }
 	
 	
 }

@@ -8,14 +8,11 @@ public class Compra {
 	private String dataPedido;
 	private String tipoPagamento;
 	private int quantidade;
+	private Fornecedor fornecedor;
 	private Item item;
+
 	
-	//OBSERVAÇÃO VER O ARRAY DE ITEM CORRIGIR ESTAR ERRADO
-	
-	
-	
-	
-	
+
 	public String getCodigoPedido() {
 		return codigoPedido;
 	}
@@ -51,7 +48,36 @@ public class Compra {
 	}
 	public void setItem(Item item) {
 		this.item = item;
+	}	
+	public Fornecedor getFornecedor() {
+		return fornecedor;
 	}
-	
+	public void setFornecedor(Fornecedor fornecedor) {
+		this.fornecedor = fornecedor;
+	}
+
+
+	public boolean equals(Compra compra){
+		boolean igual = false;
+		if(compra != null && codigoPedido.equals(compra.getCodigoPedido()) && serie.equals(compra.getSerie()) 
+				&& dataPedido.equals(compra.getDataPedido()) && fornecedor.equals(compra.getFornecedor()) ){
+			return true;
+		}
+		return false;
+	}
+
+
+	public String toString() {
+		return "Compra [codigoPedido=" + codigoPedido + ", serie=" + serie
+				+ ", dataPedido=" + dataPedido + ", tipoPagamento="
+				+ tipoPagamento + ", quantidade=" + quantidade
+				+ ", fornecedor=" + fornecedor + ", item=" + item + "]";
+	}
+
+
+
+
+
+
 
 }

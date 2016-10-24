@@ -9,6 +9,7 @@ public class Endereco {
 	private String complemento;
 	private String cidade;
 	private String  estado;
+
 	public Endereco(String logradouro, String bairro, String cep, String numero, String complemento, String cidade, String estado) {
 		this.logradouro = logradouro;
 		this.bairro = bairro;
@@ -60,7 +61,23 @@ public class Endereco {
 	public void setEstado(String estado) {
 		this.estado = estado;
 	}
-	
-	
+
+	public boolean equals(Endereco endereco){
+		boolean igual = false;
+		if( endereco != null && this.logradouro.equals(endereco.getLogradouro()) && this.bairro.equals(endereco.getBairro()) 
+				&& this.cep.equals(endereco.getCep()) && this.numero.equals(endereco.getNumero()) && this.complemento.equals(endereco.getComplemento()) 
+				&& this.cidade.equals(endereco.getCidade()) && this.estado.equals(endereco.getEstado())){
+			return true;
+		}
+		return false;
+	}
+
+	public String toString() {
+		return "Endereco [logradouro=" + logradouro + ", bairro=" + bairro
+				+ ", cep=" + cep + ", numero=" + numero + ", complemento="
+				+ complemento + ", cidade=" + cidade + ", estado=" + estado
+				+ "]";
+	}
+
 	
 }

@@ -1,5 +1,7 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
+import javax.swing.text.StyledEditorKit.ForegroundAction;
+
 public class Fornecedor {
 	
 	private String id;
@@ -48,6 +50,32 @@ public class Fornecedor {
 		this.inscricaoEstadual = inscricaoEstadual;
 	}
 
+	public boolean equals(Fornecedor fornecedor){
+		boolean igual = false;
+		if(fornecedor != null && this.id.equals(fornecedor.getId()) 
+				&& this.nomeFantasia.equals(fornecedor.getNomeFantasia())
+				&& this.razaoSocial.equals(fornecedor.getRazaoSocial()) 
+				&& this.cnpj.equals(fornecedor.getCnpj()) 
+				&& this.inscricaoEstadual.equals(fornecedor.getInscricaoEstadual()) ){
+			return true;
+		}
+		return false;
+	}
+	
+	public boolean existe(Fornecedor fornecedor){
+		boolean igual = false;
+		if(fornecedor != null && this.cnpj.equals(fornecedor.getCnpj()) ){
+			return true;
+		}
+		return false;
+	}
+
+	
+	public String toString() {
+		return "Fornecedor [id=" + id + ", nomeFantasia=" + nomeFantasia
+				+ ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj
+				+ ", inscricaoEstadual=" + inscricaoEstadual + "]";
+	}
 	
 	
 	

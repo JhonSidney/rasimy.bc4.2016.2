@@ -17,7 +17,6 @@ public class Pessoa {
 	protected String naturalidade;
 	
 	
-	
 	public Pessoa(String id, String telefone, String email, String endereco,
 			String nome, String cpf, String rg, String dataEmissao,
 			String orgaoEmissao, String sexo, String estadoCivil,
@@ -41,133 +40,93 @@ public class Pessoa {
 	public String getId() {
 		return id;
 	}
-
-
 	public void setId(String id) {
 		this.id = id;
 	}
-
-
 	public String getTelefone() {
 		return telefone;
 	}
-
-
 	public void setTelefone(String telefone) {
 		this.telefone = telefone;
 	}
-
-
 	public String getEmail() {
 		return email;
 	}
-
-
 	public void setEmail(String email) {
 		this.email = email;
 	}
-
-
 	public String getEndereco() {
 		return endereco;
 	}
-
-
 	public void setEndereco(String endereco) {
 		this.endereco = endereco;
 	}
-
-
 	public String getNome() {
 		return nome;
 	}
-
-
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-
-
 	public String getCpf() {
 		return cpf;
 	}
-
-
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
-
-
 	public String getRg() {
 		return rg;
 	}
-
-
 	public void setRg(String rg) {
 		this.rg = rg;
 	}
-
-
 	public String getDataEmissao() {
 		return dataEmissao;
 	}
-
-
 	public void setDataEmissao(String dataEmissao) {
 		this.dataEmissao = dataEmissao;
 	}
-
-
 	public String getOrgaoEmissao() {
 		return orgaoEmissao;
 	}
-
-
 	public void setOrgaoEmissao(String orgaoEmissao) {
 		this.orgaoEmissao = orgaoEmissao;
 	}
-
-
 	public String getSexo() {
 		return sexo;
 	}
-
-
 	public void setSexo(String sexo) {
 		this.sexo = sexo;
 	}
-
-
 	public String getEstadoCivil() {
 		return estadoCivil;
 	}
-
-
 	public void setEstadoCivil(String estadoCivil) {
 		this.estadoCivil = estadoCivil;
 	}
-
-
 	public String getNacionalidade() {
 		return nacionalidade;
 	}
-
-
 	public void setNacionalidade(String nacionalidade) {
 		this.nacionalidade = nacionalidade;
 	}
-
-
 	public String getNaturalidade() {
 		return naturalidade;
 	}
-
-
 	public void setNaturalidade(String naturalidade) {
 		this.naturalidade = naturalidade;
 	}
 
+
 	
 
+	public String toString() {
+		return "Pessoa [id=" + id + ", telefone=" + telefone + ", email="
+				+ email + ", endereco=" + endereco + ", nome=" + nome
+				+ ", cpf=" + cpf + ", rg=" + rg + ", dataEmissao="
+				+ dataEmissao + ", orgaoEmissao=" + orgaoEmissao + ", sexo="
+				+ sexo + ", estadoCivil=" + estadoCivil + ", nacionalidade="
+				+ nacionalidade + ", naturalidade=" + naturalidade + "]";
+	}
+	
 	
 }
