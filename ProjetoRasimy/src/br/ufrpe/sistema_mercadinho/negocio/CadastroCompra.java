@@ -1,30 +1,51 @@
 package br.ufrpe.sistema_mercadinho.negocio;
 
 import br.ufrpe.sistema_mercadinho.dados.RepositorioCompra;
-import br.ufrpe.sistema_mercadinho.negocio.beans.Compra;
 import br.ufrpe.sistema_mercadinho.negocio.beans.*;
 public class CadastroCompra {
 
-	private RepositorioCompra repositoriocompra;
-	 
-	 public CadastroCompra(){
-	  
-	  this.repositoriocompra = new RepositorioCompra(10000);//array do repositório compra
-	 }
+	private RepositorioCompra repositorioCompra;
 
-	 public void cadastrar(Compra compra){
-	  if(compra == null && this.equals(compra.getCodigoPedido())&& this.equals(compra.getSerie())){
-		  this.repositoriocompra.cadastrar(compra);
-	   
-	  }
-	 }
+	public CadastroCompra(){
+
+		this.repositorioCompra = new RepositorioCompra(10000);//array do repositório compra
+	}
+
+	public void cadastrar(Compra compra){
+		if(compra != null && !this.equals(compra.getCodigoPedido())&& !this.equals(compra.getSerie())){
+			this.repositorioCompra.cadastrar(compra);
+		}
+	}
+
+	public void atualizar(String codigoPedido){
+		Compra compra = this.repositorioCompra.procurar(codigoPedido);
+
+		if (compra != null) {
+			this.repositorioCompra.atualizar(codigoPedido);
+		} else {
+			// Conta inexistente ou conta ainda ativa
+		}
+	}
+
+	public Compra procurar(String codigoPedido){
+		return this.repositoriocompra.procurar(codigoPedido);
+	}
+	public boolean existe(String codigoPedido){
+		return this.repositoriocompra.existe(codigoPedido);
+	}
+
+	public void listar(){
+		 this.repositorioCompra.listar();
+	}
 	
-public Compra procurar(String codigoPedido){
-	return this.repositoriocompra.procurar(codigoPedido);
-}
-public boolean equals(String serie){
-	return this.repositoriocompra.equals(serie);
-}
+	public void descadastrar (String codigoPedido){
+		Compra compra = this.repositorioCompra.procurar(codigoPedido);
 
+		if (compra != null) {
+			this.repositorioCompra.remover(codigoPedido);
+		} else {
+			// Conta inexistente ou conta ainda ativa
+		}
+	}
 
 }
