@@ -7,48 +7,45 @@ import br.ufrpe.sistema_mercadinho.negocio.beans.Item;
 public class CadastroItem {
 
 	private RepositorioItem repositorioItem;
-
+	
 	public CadastroItem(){
-		this.repositorioItem = new RepositorioItem(10000);//tamanho do array do repositório item
+		this.repositorioItem = new RepositorioItem(1000);//array do repositório compra
 	}
 
 	public void cadastrar(Item item){
-		if(item != null && !this.existe(item.getCodigoProduto())&& !this.existe(item.getNome())){
+		if(item != null && !this.existe(item.getCodigoProduto())){
 			this.repositorioItem.cadastrar(item);
-		}else{
-			//interface com usuario
+		}
+	}
+
+	public void atualizar(Item item){
+		if(item != null && !this.existe(item.getCodigoProduto())){
+			this.repositorioItem.atualizar(item);
 		}
 	}
 
 	public Item procurar(String codigoProduto){
 		return this.repositorioItem.procurar(codigoProduto);
 	}
-
-	public boolean existe(String nome){
-		return this.repositorioItem.existe(nome);
-	}
-
-	public void atualizar(String codigoProduto){
-		Item item = this.repositorioitem.procurar();
-
-		if(item !=null){
-			this.repositorioItem.atualizar(codigoProduto);
-		}else{
-			//interface com usuario
-		}
-	}
-
+	
 	public void listar(){
-		this.repositorioItem.listar();
+		 this.repositorioItem.listar();
 	}
 
-	public void descadastrar(String codigoProduto){
-		Item item = this.repositorioitem.procurar();
+	
+	public boolean existe(String codigoProduto){
+		return this.repositorioItem.existe(codigoProduto);
+	}
 
-		if(item !=null){
+	
+	public void descadastrar (String codigoProduto){
+		Item item = this.repositorioItem.procurar(codigoProduto);
+
+		if (item != null) {
 			this.repositorioItem.remover(codigoProduto);
-		}else{
-			//interface com usuario
+		} else {
+			// Conta inexistente ou conta ainda ativa
 		}
 	}
+
 }

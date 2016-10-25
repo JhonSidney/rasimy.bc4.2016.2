@@ -39,7 +39,7 @@ public class CadastroVendas {
 
 		if(venda != null){
 			this.repositorioVendas.atualizar(codigoVenda);
-		}else{
+		}else{ 
 			//interface com usuario
 		}
 
