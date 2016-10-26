@@ -12,33 +12,33 @@ public class CadastroFuncionario {
 		this.repositorioFuncionario = new RepositorioFuncionario(1000);//tamanho array do repositório adm
 	}
 
-	public void cadastrar(Funcionario funcionario){
-		if(funcionario != null && !this.existe(funcionario.getId())){
+	public void cadastrarFuncionario(Funcionario funcionario){
+		if(funcionario != null && !this.existeFuncionario(funcionario.getId())){
 			this.repositorioFuncionario.cadastrar(funcionario);
 		}else{
 			//interface com usuario;
 		}
 	}
 
-	public void atualizar(Funcionario funcionario){
-		if(funcionario != null && !this.existe(funcionario.getId())){
+	public void atualizarFuncionario(Funcionario funcionario){
+		if(funcionario != null && !this.existeFuncionario(funcionario.getId())){
 			this.repositorioFuncionario.atualizar(funcionario);
 		}
 	}
 
-	public Funcionario procurar(String id){
+	public Funcionario procurarFuncionario(String id){
 		return this.repositorioFuncionario.procurar(id);
 	}
 	
-	public void listar(){
+	public void listarFuncionario(){
 		this.repositorioFuncionario.listar();
 	}
 
-	public boolean existe(String id){
+	public boolean existeFuncionario(String id){
 		return this.repositorioFuncionario.existe(id);
 	}
 
-	public void descadastrar (String id){
+	public void descadastrarFuncionario (String id){
 		Funcionario funcionario = this.repositorioFuncionario.procurar(id);
 
 		if (funcionario != null) {

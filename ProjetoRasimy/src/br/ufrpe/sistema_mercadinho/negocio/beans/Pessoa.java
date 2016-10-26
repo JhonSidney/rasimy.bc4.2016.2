@@ -1,6 +1,6 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
-public class Pessoa {
+public abstract class Pessoa  {
 
 	protected String id;
 	protected String telefone;

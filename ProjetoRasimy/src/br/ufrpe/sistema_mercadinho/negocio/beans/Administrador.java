@@ -6,8 +6,6 @@ public class Administrador extends Pessoa {
 
 	private String senha;
 
-
-
 	public Administrador(String id, String telefone, String email,
 			String endereco, String nome, String cpf, String rg,
 			String dataEmissao, String orgaoEmissao, String sexo,

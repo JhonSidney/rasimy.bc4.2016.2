@@ -1,6 +1,6 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
-public class Vendas {
+public class Venda {
 	private String codigoVenda;
 	private Funcionario funcionario;
 	private Item item;
@@ -11,7 +11,7 @@ public class Vendas {
 	private double dataVenda;
 	
 	//construtor
-	public Vendas(String codigoVenda, Funcionario funcionario, Item item,
+	public Venda(String codigoVenda, Funcionario funcionario, Item item,
 			double valorRecebido, double valorCompra, double desconto,
 			double troco, double dataVenda) {
 		
@@ -76,7 +76,7 @@ public class Vendas {
 	}
 	
 	
-	public boolean equals(Vendas cupomFiscal){
+	public boolean equals(Venda cupomFiscal){
 		boolean igual = false;
 		if(cupomFiscal != null && codigoVenda.equals(cupomFiscal.getCodigoVenda()) 
 				&& this.dataVenda == cupomFiscal.getDataVenda()){

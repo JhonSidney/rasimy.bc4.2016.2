@@ -12,33 +12,33 @@ public class CadastroItem {
 		this.repositorioItem = new RepositorioItem(1000);//array do repositório compra
 	}
 
-	public void cadastrar(Item item){
-		if(item != null && !this.existe(item.getCodigoProduto())){
+	public void cadastrarItem(Item item){
+		if(item != null && !this.existeItem(item.getCodigoProduto())){
 			this.repositorioItem.cadastrar(item);
 		}
 	}
 
-	public void atualizar(Item item){
-		if(item != null && !this.existe(item.getCodigoProduto())){
+	public void atualizarItem(Item item){
+		if(item != null && !this.existeItem(item.getCodigoProduto())){
 			this.repositorioItem.atualizar(item);
 		}
 	}
 
-	public Item procurar(String codigoProduto){
+	public Item procurarItem(String codigoProduto){
 		return this.repositorioItem.procurar(codigoProduto);
 	}
 	
-	public void listar(){
+	public void listarItem(){
 		 this.repositorioItem.listar();
 	}
 
 	
-	public boolean existe(String codigoProduto){
+	public boolean existeItem(String codigoProduto){
 		return this.repositorioItem.existe(codigoProduto);
 	}
 
 	
-	public void descadastrar (String codigoProduto){
+	public void descadastrarItem (String codigoProduto){
 		Item item = this.repositorioItem.procurar(codigoProduto);
 
 		if (item != null) {

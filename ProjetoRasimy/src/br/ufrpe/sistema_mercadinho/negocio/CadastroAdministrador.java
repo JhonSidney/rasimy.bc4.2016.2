@@ -12,33 +12,33 @@ public class CadastroAdministrador {
 		this.repositorioAdm = new RepositorioAdministrador(1000);//tamanho array do repositório adm
 	}
 
-	public void cadastrar(Administrador adm){
-		if(adm != null && !this.existe(adm.getId())){
+	public void cadastrarAdministrador(Administrador adm){
+		if(adm != null && !this.existeAdministrador(adm.getId())){
 			this.repositorioAdm.cadastrar(adm);
 		}else{
 			//interface com usuario;
 		}
 	}
 
-	public void atualizar(Administrador adm){
-		if(adm != null && !this.existe(adm.getId())){
+	public void atualizarAdministrador(Administrador adm){
+		if(adm != null && !this.existeAdministrador(adm.getId())){
 			this.repositorioAdm.atualizar(adm);
 		}
 	}
 
-	public Administrador procurar(String id){
+	public Administrador procurarAdministrador(String id){
 		return this.repositorioAdm.procurar(id);
 	}
 	
-	public void listar(){
+	public void listarAdministrador(){
 		this.repositorioAdm.listar();
 	}
 
-	public boolean existe(String id){
+	public boolean existeAdministrador(String id){
 		return this.repositorioAdm.existe(id);
 	}
 
-	public void descadastrar (String id){
+	public void descadastrarAdministrador (String id){
 		Administrador administrador = this.repositorioAdm.procurar(id);
 
 		if (administrador != null) {

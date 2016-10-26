@@ -12,33 +12,33 @@ public class CadastroFornecedor {
 		this.repositorioFornecedor = new RepositorioFornecedor(1000);//tamanho array do repositório adm
 	}
 
-	public void cadastrar(Fornecedor fornecedor){
-		if(fornecedor != null && !this.existe(fornecedor.getId())){
+	public void cadastrarFornecedor(Fornecedor fornecedor){
+		if(fornecedor != null && !this.existeFornecedor(fornecedor.getId())){
 			this.repositorioFornecedor.cadastrar(fornecedor);
 		}else{
 			//interface com usuario;
 		}
 	}
 
-	public void atualizar(Fornecedor fornecedor){
-		if(fornecedor != null && !this.existe(fornecedor.getId())){
+	public void atualizarFornecedor(Fornecedor fornecedor){
+		if(fornecedor != null && !this.existeFornecedor(fornecedor.getId())){
 			this.repositorioFornecedor.atualizar(fornecedor);
 		}
 	}
 
-	public Fornecedor procurar(String id){
+	public Fornecedor procurarFornecedor(String id){
 		return this.repositorioFornecedor.procurar(id);
 	}
 	
-	public void listar(){
+	public void listarFornecedor(){
 		this.repositorioFornecedor.listar();
 	}
 
-	public boolean existe(String id){
+	public boolean existeFornecedor(String id){
 		return this.repositorioFornecedor.existe(id);
 	}
 
-	public void descadastrar (String id){
+	public void descadastrarFornecedor(String id){
 		Fornecedor fornecedor = this.repositorioFornecedor.procurar(id);
 
 		if (fornecedor != null) {

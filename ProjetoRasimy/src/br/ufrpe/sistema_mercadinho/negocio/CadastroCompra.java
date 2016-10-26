@@ -12,33 +12,33 @@ public class CadastroCompra {
 		this.repositorioCompra = new RepositorioCompra(1000);//array do repositório compra
 	}
 
-	public void cadastrar(Compra compra){
-		if(compra != null && !this.existe(compra.getCodigoPedido())&& !this.existe(compra.getSerie())){
+	public void cadastrarCompra(Compra compra){
+		if(compra != null && !this.existeCompra(compra.getCodigoPedido())&& !this.existeCompra(compra.getSerie())){
 			this.repositorioCompra.cadastrar(compra);
 		}
 	}
 
-	public void atualizar(Compra compra){
-		if(compra != null && !this.existe(compra.getCodigoPedido())){
+	public void atualizarCompra(Compra compra){
+		if(compra != null && !this.existeCompra(compra.getCodigoPedido())){
 			this.repositorioCompra.atualizar(compra);
 		}
 	}
 
-	public Compra procurar(String codigoPedido){
+	public Compra procurarCompra(String codigoPedido){
 		return this.repositorioCompra.procurar(codigoPedido);
 	}
 	
-	public void listar(){
+	public void listarCompra(){
 		 this.repositorioCompra.listar();
 	}
 
 	
-	public boolean existe(String codigoPedido){
+	public boolean existeCompra(String codigoPedido){
 		return this.repositorioCompra.existe(codigoPedido);
 	}
 
 	
-	public void descadastrar (String codigoPedido){
+	public void descadastrarCompra (String codigoPedido){
 		Compra compra = this.repositorioCompra.procurar(codigoPedido);
 
 		if (compra != null) {
