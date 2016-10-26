@@ -3,17 +3,16 @@
  */
 package br.ufrpe.sistema_mercadinho;
 
-/**
- * @author Jhon
- *
- */
-public class Principal {
+import br.ufrpe.sistema_mercadinho.negocio.SistemaMercadinho;
 
-	/**
-	 * @param args
-	 */
+
+public class Principal {
+	
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		
+		
+		
+		
 
 	}
 
