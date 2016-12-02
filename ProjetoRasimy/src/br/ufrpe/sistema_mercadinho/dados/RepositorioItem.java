@@ -60,7 +60,7 @@ public class RepositorioItem {
 	
 	
 	public void remover(String codigoProduto){
-		boolean existe = false;
+		
 		int indice = this.procurarIndice(codigoProduto);
 		if(indice != this.qtdItens){
 			this.itens[indice] = this.itens[this.qtdItens - 1];

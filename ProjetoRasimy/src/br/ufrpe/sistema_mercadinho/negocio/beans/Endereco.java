@@ -69,7 +69,7 @@ public class Endereco {
 				&& this.cidade.equals(endereco.getCidade()) && this.estado.equals(endereco.getEstado())){
 			return true;
 		}
-		return false;
+		return igual;
 	}
 
 	public String toString() {

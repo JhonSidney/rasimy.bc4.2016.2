@@ -85,7 +85,7 @@ public class Item {
 				&& this.precoVenda ==  item.precoVenda && this.pesoProduto == item.pesoProduto){
 			return true;
 		}
-		return false;
+		return igual;
 	}
 
 	public String toString() {

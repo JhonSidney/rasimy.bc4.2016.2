@@ -58,12 +58,13 @@ public class RepositorioAdministrador {
 	}
 
 	public void remover(String id){
-		boolean existe = false;
+		
 		int indice = this.procurarIndice(id);
 		if(indice != this.qtdAdministradores){
 			this.administradores[indice] = this.administradores[this.qtdAdministradores - 1];
 			this.administradores[this.qtdAdministradores - 1] = null;
 			this.qtdAdministradores = this.qtdAdministradores - 1;
+			
 		}else{
 			//
 		}

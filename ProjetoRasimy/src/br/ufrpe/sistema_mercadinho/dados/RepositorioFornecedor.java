@@ -56,7 +56,7 @@ public class RepositorioFornecedor {
 	}
 
 	public void remover(String id){
-		boolean existe = false;
+		
 		int indice = this.procurarIndice(id);
 		if(indice != this.qtdFornecedores){
 			this.fornecedores[indice] = this.fornecedores[this.qtdFornecedores - 1];

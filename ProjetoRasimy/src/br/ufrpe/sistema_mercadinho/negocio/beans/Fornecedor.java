@@ -1,6 +1,6 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
-import javax.swing.text.StyledEditorKit.ForegroundAction;
+
 
 public class Fornecedor {
 	
@@ -59,7 +59,7 @@ public class Fornecedor {
 				&& this.inscricaoEstadual.equals(fornecedor.getInscricaoEstadual()) ){
 			return true;
 		}
-		return false;
+		return igual;
 	}
 	
 	public boolean existe(Fornecedor fornecedor){
@@ -67,7 +67,7 @@ public class Fornecedor {
 		if(fornecedor != null && this.cnpj.equals(fornecedor.getCnpj()) ){
 			return true;
 		}
-		return false;
+		return igual;
 	}
 
 	

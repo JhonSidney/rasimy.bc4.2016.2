@@ -1,5 +1,5 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
-import java.util.Date;
+
 
 public class Compra {
 
@@ -61,9 +61,10 @@ public class Compra {
 		boolean igual = false;
 		if(compra != null && codigoPedido.equals(compra.getCodigoPedido()) && serie.equals(compra.getSerie()) 
 				&& dataPedido.equals(compra.getDataPedido()) && fornecedor.equals(compra.getFornecedor()) ){
+			
 			return true;
 		}
-		return false;
+		return igual;
 	}
 
 

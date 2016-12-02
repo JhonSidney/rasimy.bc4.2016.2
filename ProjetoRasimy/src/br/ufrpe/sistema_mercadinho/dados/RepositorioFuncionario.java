@@ -56,7 +56,7 @@ public class RepositorioFuncionario {
 	}
 
 	public void remover(String id){
-		boolean existe = false;
+		
 		int indice = this.procurarIndice(id);
 		if(indice != this.qtdFuncionarios){
 			this.funcionarios[indice] = this.funcionarios[this.qtdFuncionarios - 1];
