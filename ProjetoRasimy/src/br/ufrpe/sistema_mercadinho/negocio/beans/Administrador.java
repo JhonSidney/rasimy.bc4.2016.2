@@ -1,8 +1,10 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
+import br.ufrpe.sistema_mercadinho.negocio.interfaces.ISeguranca;
 
 
-public class Administrador extends Pessoa {
+
+public class Administrador extends Pessoa implements ISeguranca {
 
 	private String senha;
 
@@ -25,6 +27,8 @@ public class Administrador extends Pessoa {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
+	
+	
 	
 	public boolean equals(Administrador adm){
 		boolean igual = false;

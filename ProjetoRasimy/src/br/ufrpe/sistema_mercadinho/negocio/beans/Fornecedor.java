@@ -1,24 +1,29 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
+import br.ufrpe.sistema_mercadinho.negocio.interfaces.IFornecedor;
 
 
-public class Fornecedor {
-	
+
+public class Fornecedor implements IFornecedor {
+
 	private String id;
 	private String nomeFantasia;
 	private String razaoSocial;
 	private String cnpj;
 	private String inscricaoEstadual;
-	
-	
-	public Fornecedor(String id, String nomeFantasia, String razaoSocial, String cnpj, String inscricaoEstadual){
+	private Endereco endereco;
+
+
+	public Fornecedor(String id, String nomeFantasia, String razaoSocial, String cnpj,
+			String inscricaoEstadual,Endereco endereco){
 		this.id = id;
 		this.nomeFantasia = nomeFantasia;
 		this.razaoSocial = razaoSocial;
 		this.cnpj = cnpj;
 		this.inscricaoEstadual = inscricaoEstadual;
+		this.endereco = endereco;
 	}
-	
+
 	public String getId() {
 		return id;
 	}
@@ -49,6 +54,15 @@ public class Fornecedor {
 	public void setInscricaoEstadual(String inscricaoEstadual) {
 		this.inscricaoEstadual = inscricaoEstadual;
 	}
+	
+	public Endereco getEndereco(){
+		return endereco;
+	}
+	
+	public void setEndereco(Endereco endereco){
+		this.endereco = endereco;
+	}
+	
 
 	public boolean equals(Fornecedor fornecedor){
 		boolean igual = false;
@@ -61,7 +75,7 @@ public class Fornecedor {
 		}
 		return igual;
 	}
-	
+
 	public boolean existe(Fornecedor fornecedor){
 		boolean igual = false;
 		if(fornecedor != null && this.cnpj.equals(fornecedor.getCnpj()) ){
@@ -70,14 +84,14 @@ public class Fornecedor {
 		return igual;
 	}
 
-	
+
 	public String toString() {
 		return "Fornecedor [id=" + id + ", nomeFantasia=" + nomeFantasia
 				+ ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj
 				+ ", inscricaoEstadual=" + inscricaoEstadual + "]";
 	}
-	
-	
-	
-	
+
+
+
+
 }

@@ -1,6 +1,9 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
-public class Funcionario extends Pessoa{
+import br.ufrpe.sistema_mercadinho.negocio.interfaces.ISeguranca;
+
+
+public class Funcionario extends Pessoa implements ISeguranca{
 
 	
 	private String funcao;
@@ -25,6 +28,8 @@ public class Funcionario extends Pessoa{
 		this.setSalario(salario);
 		
 	}
+	
+	
 	public String getFuncao(){
 		return funcao;
 	}
@@ -55,6 +60,11 @@ public class Funcionario extends Pessoa{
 	public void setSalario(double salario) {
 		this.salario = salario;
 	}
+	
+	
+	
+	
+	
 	
 	
 public boolean equals(Funcionario funcionario){
