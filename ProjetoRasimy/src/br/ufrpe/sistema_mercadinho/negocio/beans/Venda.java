@@ -1,6 +1,8 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
-public class Venda {
+import br.ufrpe.sistema_mercadinho.negocio.interfaces.IVenda;
+
+public class Venda implements IVenda {
 	private String codigoVenda;
 	private Funcionario funcionario;
 	private String dataVenda;

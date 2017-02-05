@@ -3,7 +3,6 @@ package br.ufrpe.sistema_mercadinho.negocio.beans;
 import br.ufrpe.sistema_mercadinho.negocio.interfaces.IFornecedor;
 
 
-
 public class Fornecedor implements IFornecedor {
 
 	private String id;
@@ -85,13 +84,11 @@ public class Fornecedor implements IFornecedor {
 	}
 
 
+	
 	public String toString() {
 		return "Fornecedor [id=" + id + ", nomeFantasia=" + nomeFantasia
 				+ ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj
 				+ ", inscricaoEstadual=" + inscricaoEstadual + "]";
 	}
-
-
-
 
 }
