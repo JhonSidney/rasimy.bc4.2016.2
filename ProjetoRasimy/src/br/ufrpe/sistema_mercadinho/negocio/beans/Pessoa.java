@@ -116,6 +116,7 @@ public abstract class Pessoa  {
 		this.naturalidade = naturalidade;
 	}
 
+	
 
 	public String toString() {
 		return "Pessoa [id=" + id + ", telefone=" + telefone + ", email="

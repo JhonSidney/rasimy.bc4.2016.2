@@ -77,6 +77,7 @@ public boolean existe(Funcionario funcionario){
 }
 
 
+
 public String toString() {
 	return "Funcionario [funcao=" + funcao + ", admissao=" + admissao
 			+ ", demissao=" + demissao + ", senha=" + senha + ", salario="

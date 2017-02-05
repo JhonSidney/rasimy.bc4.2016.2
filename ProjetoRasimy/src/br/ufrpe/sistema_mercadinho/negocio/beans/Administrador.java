@@ -13,8 +13,7 @@ public class Administrador extends Pessoa {
 		
 		super(id, telefone, email, endereco, nome, cpf, rg, dataEmissao, orgaoEmissao,
 				sexo, estadoCivil, nacionalidade, naturalidade);
-		this.setSenha(senha);
-		
+		this.setSenha(senha);	
 	}
 
 	
