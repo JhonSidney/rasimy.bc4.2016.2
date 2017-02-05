@@ -13,12 +13,19 @@ public class Funcionario extends Pessoa{
 	public Funcionario(String id, String telefone, String email,
 			String endereco, String nome, String cpf, String rg,
 			String dataEmissao, String orgaoEmissao, String sexo,
-			String estadoCivil, String nacionalidade, String naturalidade) {
+			String estadoCivil, String nacionalidade, String naturalidade,
+			String funcao, String admissao, String demissao, String senha, double salario) {
+		
 		super(id, telefone, email, endereco, nome, cpf, rg, dataEmissao, orgaoEmissao,
 				sexo, estadoCivil, nacionalidade, naturalidade);
-		// TODO Auto-generated constructor stub
+		this.setFuncao(funcao);
+		this.setAdmissao(admissao);
+		this.setDemissao(demissao);
+		this.setSenha(senha);
+		this.setSalario(salario);
+		
 	}
-	public String getFuncao() {
+	public String getFuncao(){
 		return funcao;
 	}
 	public void setFuncao(String funcao) {

@@ -9,12 +9,16 @@ public class Administrador extends Pessoa {
 	public Administrador(String id, String telefone, String email,
 			String endereco, String nome, String cpf, String rg,
 			String dataEmissao, String orgaoEmissao, String sexo,
-			String estadoCivil, String nacionalidade, String naturalidade) {
+			String estadoCivil, String nacionalidade, String naturalidade,String senha ) {
+		
 		super(id, telefone, email, endereco, nome, cpf, rg, dataEmissao, orgaoEmissao,
 				sexo, estadoCivil, nacionalidade, naturalidade);
-		// TODO Auto-generated constructor stub
+		this.setSenha(senha);
+		
 	}
 
+	
+	
 	public String getSenha() {
 		return senha;
 	}
@@ -35,5 +39,6 @@ public class Administrador extends Pessoa {
 	   return "Administrador [senha = " +senha +" ]";
    }
 	
+   
 	
 }

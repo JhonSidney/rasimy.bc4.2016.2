@@ -10,9 +10,22 @@ public class Compra {
 	private int quantidade;
 	private Fornecedor fornecedor;
 	private Item item;
-
 	
-
+	public Compra(String codigoPedido, String serie, String dataPedido,
+			String tipoPagamento, int quantidade, Fornecedor fornecedor,
+			Item item) {
+		this.codigoPedido = codigoPedido;
+		this.serie = serie;
+		this.dataPedido = dataPedido;
+		this.tipoPagamento = tipoPagamento;
+		this.quantidade = quantidade;
+		this.fornecedor = fornecedor;
+		this.item = item;
+	}
+	
+	
+	
+	
 	public String getCodigoPedido() {
 		return codigoPedido;
 	}
