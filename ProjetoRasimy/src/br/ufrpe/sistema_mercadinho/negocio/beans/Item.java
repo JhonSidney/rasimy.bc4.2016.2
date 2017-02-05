@@ -1,16 +1,17 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
-public class Item {
+import br.ufrpe.sistema_mercadinho.negocio.interfaces.IItem;
+
+public class Item implements IItem {
 
 	private String codigoProduto;
 	private String nome;
-	private int quantidade;
 	private String descricao;
 	private String categoria;
 	private double precoCusto;
 	private double precoVenda;
 	private double pesoProduto;
-
+	private int quantidade;
 
 
 	public Item(String codigoProduto, String nome, int quantidade,
@@ -40,12 +41,7 @@ public class Item {
 	public void setNome(String nome) {
 		this.nome = nome;
 	}
-	public int getQuantidade() {
-		return quantidade;
-	}
-	public void setQuantidade(int quantidade) {
-		this.quantidade = quantidade;
-	}
+	
 	public String getDescricao() {
 		return descricao;
 	}
@@ -75,6 +71,13 @@ public class Item {
 	}
 	public void setPesoProduto(double pesoProduto) {
 		this.pesoProduto = pesoProduto;
+	}
+	
+	public int getQuantidade() {
+		return quantidade;
+	}
+	public void setQuantidade(int quantidade) {
+		this.quantidade = quantidade;
 	}
 
 
