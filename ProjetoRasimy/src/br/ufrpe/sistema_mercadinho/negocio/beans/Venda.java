@@ -1,6 +1,5 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
-import br.ufrpe.sistema_mercadinho.negocio.interfaces.IVenda;
 
 public class Venda implements IVenda {
 	private String codigoVenda;

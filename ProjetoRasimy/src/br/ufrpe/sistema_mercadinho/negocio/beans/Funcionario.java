@@ -1,6 +1,5 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
-import br.ufrpe.sistema_mercadinho.negocio.interfaces.ISeguranca;
 
 
 public class Funcionario extends Pessoa implements ISeguranca{

@@ -1,6 +1,5 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
-import br.ufrpe.sistema_mercadinho.negocio.interfaces.IFornecedor;
 
 
 public class Fornecedor implements IFornecedor {
