@@ -1,7 +1,7 @@
 package br.ufrpe.sistema_mercadinho.dados;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Administrador;
 
-public class RepositorioAdministrador {
+public class RepositorioAdministrador implements IRepositorioAdministrador{
  
 	private Administrador[] administradores;
 	private int qtdAdministradores;

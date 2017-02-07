@@ -1,7 +1,7 @@
 package br.ufrpe.sistema_mercadinho.dados;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Item;
 
-public class RepositorioItem {
+public class RepositorioItem implements IRepositorioItem{
 
 	private Item[] itens;
 	private int qtdItens;

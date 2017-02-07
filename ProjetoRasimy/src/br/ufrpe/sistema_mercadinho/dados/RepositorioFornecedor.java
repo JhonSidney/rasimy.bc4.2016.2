@@ -1,7 +1,7 @@
 package br.ufrpe.sistema_mercadinho.dados;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Fornecedor;
 
-public class RepositorioFornecedor {
+public class RepositorioFornecedor implements IRepositorioFornecedor {
 
 	private Fornecedor[] fornecedores;
 	private int qtdFornecedores;
