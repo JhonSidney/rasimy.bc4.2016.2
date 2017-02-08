@@ -2,7 +2,7 @@ package br.ufrpe.sistema_mercadinho.negocio.beans;
 
 
 
-public class Funcionario extends Pessoa implements ISeguranca{
+public class Funcionario extends Pessoa {
 
 	
 	private String funcao;

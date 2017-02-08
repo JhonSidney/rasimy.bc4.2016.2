@@ -3,7 +3,7 @@ package br.ufrpe.sistema_mercadinho.negocio.beans;
 
 
 
-public class Administrador extends Pessoa implements ISeguranca {
+public class Administrador extends Pessoa  {
 
 	private String senha;
 

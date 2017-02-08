@@ -2,7 +2,7 @@ package br.ufrpe.sistema_mercadinho.negocio.beans;
 
 
 
-public class Compra implements ICompra {
+public class Compra {
 
 	private String codigoPedido;
 	private String serie;

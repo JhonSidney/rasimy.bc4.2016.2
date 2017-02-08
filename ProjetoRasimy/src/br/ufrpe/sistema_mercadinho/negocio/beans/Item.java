@@ -1,8 +1,6 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
-
-public class Item implements IItem {
-
+public class Item {
 	private String codigoProduto;
 	private String nome;
 	private String descricao;
@@ -97,10 +95,6 @@ public class Item implements IItem {
 				+ ", precoVenda=" + precoVenda + ", pesoProduto=" + pesoProduto
 				+ "]";
 	}
-
-
 	
 	
-
-
 }

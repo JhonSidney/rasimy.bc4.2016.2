@@ -2,7 +2,7 @@ package br.ufrpe.sistema_mercadinho.negocio.beans;
 
 
 
-public class Fornecedor implements IFornecedor {
+public class Fornecedor  {
 
 	private String id;
 	private String nomeFantasia;
