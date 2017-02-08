@@ -1,15 +1,15 @@
 package br.ufrpe.sistema_mercadinho.negocio;
-import br.ufrpe.sistema_mercadinho.dados.RepositorioAdministrador;
+import br.ufrpe.sistema_mercadinho.dados.IRepositorioAdministrador;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Administrador;
 
 
 
 public class CadastroAdministrador {
 
-	private RepositorioAdministrador repositorioAdm;
+	private IRepositorioAdministrador repositorioAdm;
 
-	public CadastroAdministrador(){
-		this.repositorioAdm = new RepositorioAdministrador(1000);//tamanho array do repositório adm
+	public CadastroAdministrador(IRepositorioAdministrador instancia){
+		this.repositorioAdm = instancia;
 	}
 
 	public void cadastrarAdministrador(Administrador adm){
@@ -34,9 +34,13 @@ public class CadastroAdministrador {
 		this.repositorioAdm.listar();
 	}
 
+	
+
 	public boolean existeAdministrador(String id){
 		return this.repositorioAdm.existe(id);
 	}
+	
+
 
 	public void descadastrarAdministrador (String id){
 		Administrador administrador = this.repositorioAdm.procurar(id);

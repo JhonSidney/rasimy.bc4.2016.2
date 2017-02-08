@@ -49,6 +49,7 @@ public class RepositorioAdministrador implements IRepositorioAdministrador{
 			resultado = this.administradores[indice];
 		}
 		return resultado;
+		
 	}
 
 	public void listar(){
