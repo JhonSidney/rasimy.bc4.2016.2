@@ -1,34 +1,34 @@
 package br.ufrpe.sistema_mercadinho.dados;
+import java.util.ArrayList;
+
 import br.ufrpe.sistema_mercadinho.negocio.beans.Administrador;
 
 public class RepositorioAdministrador implements IRepositorioAdministrador{
  
-	private Administrador[] administradores;
+	private ArrayList<Administrador> administradores;
 	private int qtdAdministradores;
-
-
-	public RepositorioAdministrador(int tamanho){
-		this.administradores = new Administrador[tamanho];
-		this.qtdAdministradores = 0; 
-
+	public static RepositorioAdministrador instancia;
+	
+	private RepositorioAdministrador(){
+		this.administradores = new ArrayList<Administrador>();
 	}
+	
+	public static RepositorioAdministrador getInstance() {
 
-	public Administrador[] getAdministradores(){
-		return this.administradores;
+		if(instancia == null){
+			instancia = new RepositorioAdministrador();
+		}
+	    return instancia;
+	  }
+	
+
+
+	public ArrayList<Administrador> getAdministradores() {
+		return administradores;
 	}
-
-
-	public int getQtdAdministradores(){
-		return this.qtdAdministradores;
-	}
-
 
 	public void cadastrar(Administrador adm){
-		this.administradores[qtdAdministradores] = adm;
-		this.qtdAdministradores++;
-		if(this.qtdAdministradores ==  this.administradores.length){
-			this.duplicaArrayAdministradores();
-		}
+		this.administradores.add(adm);
 	}
 
 
@@ -36,11 +36,9 @@ public class RepositorioAdministrador implements IRepositorioAdministrador{
 		int indice = this.procurarIndice(adm.getId());
 		if(indice != qtdAdministradores){
 			this.administradores[indice] = adm;
-		}else{
-			//
 		}
+		
 	}
-
 
 	public Administrador procurar(String id){
 		int indice = this.procurarIndice(id);
@@ -49,27 +47,21 @@ public class RepositorioAdministrador implements IRepositorioAdministrador{
 			resultado = this.administradores[indice];
 		}
 		return resultado;
-		
 	}
 
-	public void listar(){
+	public  listar(){
 		for(int i=0; i< this.qtdAdministradores;i++){
 			System.out.println(""+administradores[i]);
 		}
 	}
 
 	public void remover(String id){
-		
 		int indice = this.procurarIndice(id);
 		if(indice != this.qtdAdministradores){
 			this.administradores[indice] = this.administradores[this.qtdAdministradores - 1];
 			this.administradores[this.qtdAdministradores - 1] = null;
-			this.qtdAdministradores = this.qtdAdministradores - 1;
-			
-		}else{
-			//
+			this.qtdAdministradores = this.qtdAdministradores - 1;	
 		}
-
 	}
 
 

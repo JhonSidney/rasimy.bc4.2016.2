@@ -2,7 +2,6 @@ package br.ufrpe.sistema_mercadinho.negocio.beans;
 
 public abstract class Pessoa  {
 
-	protected String id;
 	protected String telefone;
 	protected String email;
 	protected String endereco;
@@ -15,33 +14,26 @@ public abstract class Pessoa  {
 	protected String estadoCivil;
 	protected String nacionalidade;
 	protected String naturalidade;
+	protected int senha;
 	
-	
-	public Pessoa(String id, String telefone, String email, String endereco,
+	public Pessoa(String telefone, String email, String endereco,
 			String nome, String cpf, String rg, String dataEmissao,
 			String orgaoEmissao, String sexo, String estadoCivil,
-			String nacionalidade, String naturalidade) {
-		this.id = id;
-		this.telefone = telefone;
-		this.email = email;
-		this.endereco = endereco;
-		this.nome = nome;
-		this.cpf = cpf;
-		this.rg = rg;
-		this.dataEmissao = dataEmissao;
-		this.orgaoEmissao = orgaoEmissao;
-		this.sexo = sexo;
-		this.estadoCivil = estadoCivil;
-		this.nacionalidade = nacionalidade;
-		this.naturalidade = naturalidade;
-	}
+			String nacionalidade, String naturalidade,int senha) {
 
-
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
+		this.setTelefone(telefone);
+		this.setEmail(email);
+		this.setEndereco(endereco);
+		this.setNome(nome);
+		this.setCpf(cpf);
+		this.setRg(orgaoEmissao);
+		this.setDataEmissao(dataEmissao);
+		this.setOrgaoEmissao(orgaoEmissao);
+		this.setSexo(sexo);
+		this.setEstadoCivil(estadoCivil);
+		this.setNacionalidade(nacionalidade);
+		this.setNaturalidade(naturalidade);
+		this.setSenha(senha);
 	}
 	
 	public String getTelefone() {
@@ -116,17 +108,20 @@ public abstract class Pessoa  {
 	public void setNaturalidade(String naturalidade) {
 		this.naturalidade = naturalidade;
 	}
-
 	
-
-	public String toString() {
-		return "Pessoa [id=" + id + ", telefone=" + telefone + ", email="
-				+ email + ", endereco=" + endereco + ", nome=" + nome
-				+ ", cpf=" + cpf + ", rg=" + rg + ", dataEmissao="
-				+ dataEmissao + ", orgaoEmissao=" + orgaoEmissao + ", sexo="
-				+ sexo + ", estadoCivil=" + estadoCivil + ", nacionalidade="
-				+ nacionalidade + ", naturalidade=" + naturalidade + "]";
+	public int getSenha() {
+		return senha;
 	}
-	
-	
+
+	public void setSenha(int senha) {
+		this.senha = senha;
+	}
+
+	@Override
+	public String toString() {
+		return "Pessoa [telefone=" + telefone + ", email=" + email + ", endereco=" + endereco + ", nome=" + nome
+				+ ", cpf=" + cpf + ", rg=" + rg + ", dataEmissao=" + dataEmissao + ", orgaoEmissao=" + orgaoEmissao
+				+ ", sexo=" + sexo + ", estadoCivil=" + estadoCivil + ", nacionalidade=" + nacionalidade
+				+ ", naturalidade=" + naturalidade + ", senha=" + senha + "]";
+	}
 }

@@ -5,42 +5,36 @@ package br.ufrpe.sistema_mercadinho.negocio.beans;
 
 public class Administrador extends Pessoa  {
 
-	private String senha;
+	private int nivelAcesso;
 
-	public Administrador(String id, String telefone, String email,
-			String endereco, String nome, String cpf, String rg,
-			String dataEmissao, String orgaoEmissao, String sexo,
-			String estadoCivil, String nacionalidade, String naturalidade,String senha ) {
-		
-		super(id, telefone, email, endereco, nome, cpf, rg, dataEmissao, orgaoEmissao,
-				sexo, estadoCivil, nacionalidade, naturalidade);
-		this.setSenha(senha);	
+	public Administrador(String telefone, String email, String endereco, String nome, String cpf, String rg,
+			String dataEmissao, String orgaoEmissao, String sexo, String estadoCivil, String nacionalidade,
+			String naturalidade, int senha) {
+		super(telefone, email, endereco, nome, cpf, rg, dataEmissao, orgaoEmissao, sexo, estadoCivil, nacionalidade,
+				naturalidade, senha);
+		this.setNivelAcesso(senha);
+
 	}
 
-	
-	
-	public String getSenha() {
-		return senha;
+	public int getNivelAcesso() {
+		return this.nivelAcesso;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setNivelAcesso(int nivelAcesso) {
+		this.nivelAcesso = nivelAcesso;
 	}
-	
-	
-	
-	public boolean equals(Administrador adm){
+
+	public boolean equals(Object o){
 		boolean igual = false;
-		if(adm != null && senha.equals(adm.getSenha())&& id.equals(adm.getId())){
-			return true;
+		if(o instanceof Administrador){ 
+			if(((Administrador) o).getCpf().equals(this.getCpf())){
+				igual = true;
+			}
 		}
 		return igual;
 	}
-	
-   public String toString(){
-	   return "Administrador [senha = " +senha +" ]";
-   }
-	
-   
-	
+
+	public String toString(){
+		return "Administrador [nivelAcesso = " +this.nivelAcesso + super.toString()+" ]";
+	}
 }

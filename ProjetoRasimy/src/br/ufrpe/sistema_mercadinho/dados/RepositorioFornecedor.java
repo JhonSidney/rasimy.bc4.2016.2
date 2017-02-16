@@ -3,16 +3,43 @@ import br.ufrpe.sistema_mercadinho.negocio.beans.Fornecedor;
 
 public class RepositorioFornecedor implements IRepositorioFornecedor {
 
+	
+	
+	//ATRIBUTOS
 	private Fornecedor[] fornecedores;
 	private int qtdFornecedores;
+	public static RepositorioFornecedor instancia;
 
-
+	
+	
+	
+	//CONSTRUTOR
 	public RepositorioFornecedor(int tamanho){
 		this.fornecedores = new Fornecedor[tamanho];
 		this.qtdFornecedores = 0; 
 
 	}
 
+	public RepositorioFornecedor(){
+		
+	}
+	
+	
+	
+	public static RepositorioFornecedor getInstance() {
+
+		if(instancia == null){
+			instancia = new RepositorioFornecedor();
+		}
+	    return instancia;
+	  }
+	
+	
+	
+	
+	
+	
+	/*
 	public Fornecedor[] getFornecedores() {
 		return this.fornecedores;
 	}
@@ -21,6 +48,12 @@ public class RepositorioFornecedor implements IRepositorioFornecedor {
 		return this.qtdFornecedores;
 	}
 
+   */
+	
+	
+	//METODOS
+	
+	
 	public void cadastrar(Fornecedor fornecedor){
 		this.fornecedores[qtdFornecedores] = fornecedor;
 		this.qtdFornecedores++;

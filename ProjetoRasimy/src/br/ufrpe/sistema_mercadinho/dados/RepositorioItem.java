@@ -3,8 +3,10 @@ import br.ufrpe.sistema_mercadinho.negocio.beans.Item;
 
 public class RepositorioItem implements IRepositorioItem{
 
+	//ATRIBUTOS
 	private Item[] itens;
 	private int qtdItens;
+	public static RepositorioItem instancia;
 
 
 	public RepositorioItem(int tamanho){
@@ -13,6 +15,22 @@ public class RepositorioItem implements IRepositorioItem{
 		
 	}
 
+	public RepositorioItem(){
+		
+	}
+	
+	public static RepositorioItem getInstance()	{
+		
+		if(instancia == null){
+			instancia = new RepositorioItem();
+		}
+		return instancia;
+	}
+	
+	
+	
+	
+	/*
 	public Item[] getItens(){
 		return this.itens;
 	}
@@ -22,6 +40,15 @@ public class RepositorioItem implements IRepositorioItem{
 		return this.qtdItens;
 	}
 
+	*/
+	
+	
+	
+	
+	
+	
+	//METODOS
+	
 
 	public void cadastrar(Item item){
 		this.itens[qtdItens] = item;

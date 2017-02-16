@@ -3,16 +3,44 @@ import br.ufrpe.sistema_mercadinho.negocio.beans.Venda;
 
 public class RepositorioVenda implements IRepositorioVenda{
 
+	//ATRIBUTOS
 	private Venda[] vendas;
 	private int qtdVendas;
+	public static RepositorioVenda instancia;
 
-
+	
+	
+	
+	
+	
+	
 	public RepositorioVenda(int tamanho){
 		this.vendas = new Venda[tamanho];
 		this.qtdVendas = 0; 
 		
 	}
 
+	
+	public RepositorioVenda(){
+		
+	}
+	
+	
+	public static RepositorioVenda getInstance(){
+		
+		if(instancia == null){
+			instancia = new RepositorioVenda();
+		}
+		return instancia;
+	}
+	
+	
+	
+	
+	
+	
+	/*
+	
 	public Venda[] getVendas(){
 		return this.vendas;
 	}
@@ -22,7 +50,15 @@ public class RepositorioVenda implements IRepositorioVenda{
 		return this.qtdVendas;
 	}
 
-
+	*/
+	
+	
+	
+	
+	
+	//METODOS
+	
+	
 	public void cadastrar(Venda venda){
 		this.vendas[qtdVendas] = venda;
 		this.qtdVendas++;

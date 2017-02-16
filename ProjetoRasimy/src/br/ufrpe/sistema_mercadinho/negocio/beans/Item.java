@@ -14,17 +14,16 @@ public class Item {
 	public Item(String codigoProduto, String nome, int quantidade,
 			String descricao, String categoria, double precoCusto,
 			double precoVenda, double pesoProduto) {
-
-		this.codigoProduto = codigoProduto;
-		this.nome = nome;
-		this.quantidade = quantidade;
-		this.descricao = descricao;
-		this.categoria = categoria;
-		this.precoCusto = precoCusto;
-		this.precoVenda = precoVenda;
-		this.pesoProduto = pesoProduto;
+		
+		this.setCodigoProduto(codigoProduto);
+		this.setNome(nome);
+		this.setDescricao(descricao);
+		this.setCategoria(categoria);
+		this.setPrecoCusto(precoCusto);
+		this.setPrecoVenda(precoVenda);
+		this.setPesoProduto(pesoProduto);
+		this.setQuantidade(quantidade);
 	}
-
 
 	public String getCodigoProduto() {
 		return codigoProduto;
@@ -77,13 +76,10 @@ public class Item {
 		this.quantidade = quantidade;
 	}
 
-
-	public boolean equals(Item item){
+	public boolean equals(Object o){
 		boolean igual = false;
-		if(item != null && this.codigoProduto.equals(item.getCodigoProduto()) && this.nome.equals(item.getNome())
-				&& this.descricao.equals(item.getDescricao()) && this.categoria.equals(item.getCategoria())
-				&& this.precoVenda ==  item.precoVenda && this.pesoProduto == item.pesoProduto){
-			return true;
+		if(((Item)o).getCodigoProduto().equals(this.getCodigoProduto())){
+			igual = true;
 		}
 		return igual;
 	}
@@ -95,6 +91,4 @@ public class Item {
 				+ ", precoVenda=" + precoVenda + ", pesoProduto=" + pesoProduto
 				+ "]";
 	}
-	
-	
 }

@@ -11,51 +11,52 @@ public class Compra {
 	private String tipoPagamento;
 	private int quantidade;
 	private Item item;
-	
-	
-	
+
+
+
 	public Compra(String codigoPedido, String serie, String dataPedido,
-			 Fornecedor fornecedor,String tipoPagamento ,int quantidade ,
+			Fornecedor fornecedor,String tipoPagamento ,int quantidade ,
 			Item item) {
-	
-		this.codigoPedido = codigoPedido;
-		this.serie = serie;
-		this.dataPedido = dataPedido;
-		this.fornecedor = fornecedor;
-		this.tipoPagamento = tipoPagamento;
-		this.quantidade = quantidade;
-		this.item = item;
+
+
+		this.setCodigoPedido(codigoPedido);
+		this.setSerie(serie);
+		this.setDataPedido(dataPedido);
+		this.setFornecedor(fornecedor);
+		this.setTipoPagamento(tipoPagamento);
+		this.setQuantidade(quantidade);
+		this.setItem(item);
+
 	}
-	
-	
+
 	public String getCodigoPedido() {
 		return codigoPedido;
 	}
-	
+
 	public void setCodigoPedido(String codigoPedido) {
 		this.codigoPedido = codigoPedido;
 	}
-	
+
 	public String getSerie() {
 		return serie;
 	}
-	
+
 	public void setSerie(String serie) {
 		this.serie = serie;
 	}
-	
+
 	public String getDataPedido() {
 		return dataPedido;
 	}
-	
+
 	public void setDataPedido(String dataPedido) {
 		this.dataPedido = dataPedido;
 	}
-	
+
 	public Fornecedor getFornecedor() {
 		return fornecedor;
 	}
-	
+
 	public void setFornecedor(Fornecedor fornecedor) {
 		this.fornecedor = fornecedor;
 	}
@@ -63,38 +64,38 @@ public class Compra {
 	public String getTipoPagamento() {
 		return tipoPagamento;
 	}
-	
+
 	public void setTipoPagamento(String tipoPagamento) {
 		this.tipoPagamento = tipoPagamento;
 	}
-	
+
 	public int getQuantidade() {
 		return quantidade;
 	}
-	
+
 	public void setQuantidade(int quantidade) {
 		this.quantidade = quantidade;
 	}
-	
+
 	public Item getItem() {
 		return item;
 	}
-	
+
 	public void setItem(Item item) {
 		this.item = item;
 	}
-	
-	
 
 
-	public boolean equals(Compra compra){
+	public boolean equals(Object o){
 		boolean igual = false;
-		if(compra != null && codigoPedido.equals(compra.getCodigoPedido()) && serie.equals(compra.getSerie()) 
-				&& dataPedido.equals(compra.getDataPedido()) && fornecedor.equals(compra.getFornecedor()) ){
-			
-			return true;
+
+		if(o  instanceof Compra){
+			if(((Compra) o).getCodigoPedido().equals(this.getCodigoPedido())){
+				igual = true;
+			}
 		}
 		return igual;
+
 	}
 
 
@@ -104,11 +105,5 @@ public class Compra {
 				+ tipoPagamento + ", quantidade=" + quantidade
 				+ ", fornecedor=" + fornecedor + ", item=" + item + "]";
 	}
-
-
-
-
-
-
 
 }

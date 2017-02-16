@@ -5,6 +5,7 @@ public class RepositorioCompra implements IRepositorioCompra{
 
 	private Compra[] compras;
 	private int qtdCompras;
+	public static RepositorioCompra instancia;
 
 
 	public RepositorioCompra(int tamanho){
@@ -12,6 +13,21 @@ public class RepositorioCompra implements IRepositorioCompra{
 		this.qtdCompras = 0; 
 		
 	}
+	
+	public  RepositorioCompra(){
+		
+	}
+	
+	
+	public static RepositorioCompra getInstance() {
+
+		if(instancia == null){
+			instancia = new RepositorioCompra();
+		}
+	    return instancia;
+	  }
+	
+	/*
 
 	public Compra[] getCompras(){
 		return this.compras;
@@ -22,7 +38,7 @@ public class RepositorioCompra implements IRepositorioCompra{
 		return this.qtdCompras;
 	}
 
-
+	*/
 	public void cadastrar(Compra compra){
 		this.compras[qtdCompras] = compra;
 		this.qtdCompras++;

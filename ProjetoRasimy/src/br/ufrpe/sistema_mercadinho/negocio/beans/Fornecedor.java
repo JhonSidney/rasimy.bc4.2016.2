@@ -4,30 +4,21 @@ package br.ufrpe.sistema_mercadinho.negocio.beans;
 
 public class Fornecedor  {
 
-	private String id;
 	private String nomeFantasia;
 	private String razaoSocial;
 	private String cnpj;
 	private String inscricaoEstadual;
 	private Endereco endereco;
 
-
 	public Fornecedor(String id, String nomeFantasia, String razaoSocial, String cnpj,
 			String inscricaoEstadual,Endereco endereco){
-		this.id = id;
-		this.nomeFantasia = nomeFantasia;
-		this.razaoSocial = razaoSocial;
-		this.cnpj = cnpj;
-		this.inscricaoEstadual = inscricaoEstadual;
-		this.endereco = endereco;
+		this.setNomeFantasia(nomeFantasia);
+		this.setRazaoSocial(razaoSocial);
+		this.setCnpj(cnpj);
+		this.setInscricaoEstadual(inscricaoEstadual);
+		this.setEndereco(endereco);
 	}
 
-	public String getId() {
-		return id;
-	}
-	public void setId(String id) {
-		this.id = id;
-	}
 	public String getNomeFantasia() {
 		return nomeFantasia;
 	}
@@ -52,40 +43,27 @@ public class Fornecedor  {
 	public void setInscricaoEstadual(String inscricaoEstadual) {
 		this.inscricaoEstadual = inscricaoEstadual;
 	}
-	
+
 	public Endereco getEndereco(){
 		return endereco;
 	}
-	
+
 	public void setEndereco(Endereco endereco){
 		this.endereco = endereco;
 	}
-	
 
-	public boolean equals(Fornecedor fornecedor){
+	public boolean equals(Object o){
 		boolean igual = false;
-		if(fornecedor != null && this.id.equals(fornecedor.getId()) 
-				&& this.nomeFantasia.equals(fornecedor.getNomeFantasia())
-				&& this.razaoSocial.equals(fornecedor.getRazaoSocial()) 
-				&& this.cnpj.equals(fornecedor.getCnpj()) 
-				&& this.inscricaoEstadual.equals(fornecedor.getInscricaoEstadual()) ){
-			return true;
+		if(o instanceof Fornecedor){
+			if(((Fornecedor)o).getCnpj().equals(this.getCnpj())){
+				igual = true;	
+			}
 		}
 		return igual;
 	}
 
-	public boolean existe(Fornecedor fornecedor){
-		boolean igual = false;
-		if(fornecedor != null && this.cnpj.equals(fornecedor.getCnpj()) ){
-			return true;
-		}
-		return igual;
-	}
-
-
-	
 	public String toString() {
-		return "Fornecedor [id=" + id + ", nomeFantasia=" + nomeFantasia
+		return "Fornecedor [ nomeFantasia=" + nomeFantasia
 				+ ", razaoSocial=" + razaoSocial + ", cnpj=" + cnpj
 				+ ", inscricaoEstadual=" + inscricaoEstadual + "]";
 	}

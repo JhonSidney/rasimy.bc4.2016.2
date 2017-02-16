@@ -3,8 +3,11 @@ import br.ufrpe.sistema_mercadinho.negocio.beans.Funcionario;
 
 public class RepositorioFuncionario implements IRepositorioFuncionario{
 
+	
+	//ATRIBUTOS
 	private Funcionario[] funcionarios;
 	private int qtdFuncionarios;
+	public static RepositorioFuncionario instancia;
 
 
 	public RepositorioFuncionario(int tamanho){
@@ -12,6 +15,26 @@ public class RepositorioFuncionario implements IRepositorioFuncionario{
 		this.qtdFuncionarios = 0; 
 
 	}
+	
+	
+	public RepositorioFuncionario(){
+		
+	}
+	
+	
+	public static RepositorioFuncionario getInstance(){
+		
+		
+		if(instancia ==  null){
+			instancia = new RepositorioFuncionario();
+		}
+		return instancia;
+	}
+	
+	
+	
+	
+	/*
 
 	public Funcionario[] getFuncionarios() {
 		return this.funcionarios;
@@ -21,6 +44,14 @@ public class RepositorioFuncionario implements IRepositorioFuncionario{
 		return this.qtdFuncionarios;
 	}
 
+	*/
+	
+	
+	//METODOS
+	
+	
+	
+	
 	public void cadastrar(Funcionario funcionario){
 		this.funcionarios[qtdFuncionarios] = funcionario;
 		this.qtdFuncionarios++;
