@@ -1,139 +1,74 @@
 package br.ufrpe.sistema_mercadinho.dados;
+
+import java.util.ArrayList;
+
 import br.ufrpe.sistema_mercadinho.negocio.beans.Funcionario;
 
-public class RepositorioFuncionario implements IRepositorioFuncionario{
+public class RepositorioFuncionario implements IRepositorioFuncionario {
 
-	
-	//ATRIBUTOS
-	private Funcionario[] funcionarios;
-	private int qtdFuncionarios;
+	// ATRIBUTOS
+	private ArrayList<Funcionario> funcionarios;
 	public static RepositorioFuncionario instancia;
 
-
-	public RepositorioFuncionario(int tamanho){
-		this.funcionarios = new Funcionario[tamanho];
-		this.qtdFuncionarios = 0; 
-
+	private RepositorioFuncionario() {
+		this.funcionarios = new ArrayList<Funcionario>();
 	}
-	
-	
-	public RepositorioFuncionario(){
-		
-	}
-	
-	
-	public static RepositorioFuncionario getInstance(){
-		
-		
-		if(instancia ==  null){
+
+	public static RepositorioFuncionario getInstance() {
+
+		if (instancia == null) {
 			instancia = new RepositorioFuncionario();
 		}
 		return instancia;
 	}
-	
-	
-	
-	
-	/*
 
-	public Funcionario[] getFuncionarios() {
+	@Override
+	public boolean cadastrar(Funcionario funcionario) {
+		this.funcionarios.add(funcionario);
+		return true;
+	}
+
+	@Override
+	public boolean atualizar(Funcionario funcionario) {
+		int i = 0;
+		for (Funcionario f : this.funcionarios) {
+			i++;
+			if (f.getCpf().equals(funcionario.getCpf())) {
+				this.funcionarios.add(i, funcionario);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public Funcionario procurar(String cpf) {
+		for (Funcionario f : this.funcionarios) {
+			if (f.getCpf().equals(cpf)) {
+				return f;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public ArrayList<Funcionario> listar() {
+
 		return this.funcionarios;
 	}
 
-	public int getQtdFuncionarios() {
-		return this.qtdFuncionarios;
-	}
-
-	*/
-	
-	
-	//METODOS
-	
-	
-	
-	
-	public void cadastrar(Funcionario funcionario){
-		this.funcionarios[qtdFuncionarios] = funcionario;
-		this.qtdFuncionarios++;
-		if(this.qtdFuncionarios ==  this.funcionarios.length){
-			this.duplicaArrayFuncionarios();
-		}
-	}
-
-
-	public void atualizar(Funcionario funcionario){
-		int indice = this.procurarIndice(funcionario.getId());
-		if(indice != qtdFuncionarios){
-			this.funcionarios[indice] = funcionario;
-		}else{
-			//
-		}
-	}
-
-
-	public Funcionario procurar(String id){
-		int indice = this.procurarIndice(id);
-		Funcionario resultado = null;
-		if(indice != this.qtdFuncionarios){
-			resultado = this.funcionarios[indice];
-		}
-		return resultado;
-	}
-
-	public void listar(){
-		for(int i=0; i< this.qtdFuncionarios;i++){
-			System.out.println(""+funcionarios[i]);
-		}
-	}
-
-	public void remover(String id){
-		
-		int indice = this.procurarIndice(id);
-		if(indice != this.qtdFuncionarios){
-			this.funcionarios[indice] = this.funcionarios[this.qtdFuncionarios - 1];
-			this.funcionarios[this.qtdFuncionarios - 1] = null;
-			this.qtdFuncionarios = this.qtdFuncionarios - 1;
-		}else{
-			//
-		}
-
-	}
-
-
-	private int procurarIndice(String id) {
-		int indice = 0;
-		boolean achou = false;
-		while ((!achou) && (indice < this.qtdFuncionarios)) {
-			if (id.equals(this.funcionarios[indice].getId())) {
-				achou = true;
-			} else {
-				indice++;
+	@Override
+	public boolean remover(String cpf) {
+		int i = 0;
+		for (Funcionario f : this.funcionarios) {
+			i++;
+			if (f.getCpf().equals(cpf)) {
+				this.funcionarios.remove(i);
+				return true;
 			}
 		}
-		return indice;
-	}	
 
-
-	private void duplicaArrayFuncionarios() {
-
-		if (this.funcionarios != null && this.funcionarios.length > 0) {
-			Funcionario[] arrayDuplicado = new Funcionario[this.funcionarios.length * 2];
-
-			for (int i = 0; i < this.funcionarios.length; i++) {
-				arrayDuplicado[i] = this.funcionarios[i];
-			}
-			this.funcionarios = arrayDuplicado;
-		}
-
+		return false;
 	}
 
-	
-	public boolean existe(String id){
-		boolean existe = false;
-		int indice = this.procurarIndice(id);
-		if(indice != this.qtdFuncionarios){
-			existe = true;
-		}
-		return existe;
-	}
 }

@@ -1,128 +1,80 @@
+
 package br.ufrpe.sistema_mercadinho.dados;
+
+import java.util.ArrayList;
+
 import br.ufrpe.sistema_mercadinho.negocio.beans.Compra;
 
-public class RepositorioCompra implements IRepositorioCompra{
+public class RepositorioCompra implements IRepositorioCompra {
 
-	private Compra[] compras;
-	private int qtdCompras;
+	private ArrayList<Compra> compras;
 	public static RepositorioCompra instancia;
 
+	private RepositorioCompra() {
+		this.compras = new ArrayList<Compra>();
 
-	public RepositorioCompra(int tamanho){
-		this.compras = new Compra[tamanho];
-		this.qtdCompras = 0; 
-		
 	}
-	
-	public  RepositorioCompra(){
-		
-	}
-	
-	
+
 	public static RepositorioCompra getInstance() {
 
-		if(instancia == null){
+		if (instancia == null) {
 			instancia = new RepositorioCompra();
 		}
-	    return instancia;
-	  }
-	
-	/*
+		return instancia;
+	}
 
-	public Compra[] getCompras(){
+	@Override
+	public boolean cadastrar(Compra compra) {
+		this.compras.add(compra);
+		return true;
+	}
+
+	@Override
+	public boolean atualizar(Compra compra) {
+		int i = 0;
+		for (Compra c : this.compras) {
+			i++;
+			if (c.getCodigoPedido().equals(compra.getCodigoPedido())) {
+				this.compras.add(i, compra);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public Compra procurar(String codigoPedido) {
+
+		for (Compra c : this.compras) {
+
+			if (c.getCodigoPedido().equals(codigoPedido)) {
+				return c;
+			}
+
+		}
+
+		return null;
+	}
+
+	@Override
+	public ArrayList<Compra> listar() {
 		return this.compras;
 	}
 
+	@Override
+	public boolean remover(String codigoPedido) {
 
-	public int getQtdCompras(){
-		return this.qtdCompras;
-	}
-
-	*/
-	public void cadastrar(Compra compra){
-		this.compras[qtdCompras] = compra;
-		this.qtdCompras++;
-		if(this.qtdCompras ==  this.compras.length){
-			this.duplicaArrayCompras();
-		}
-	}
-
-
-	public void atualizar(Compra compra){
-		int indice = this.procurarIndice(compra.getCodigoPedido());
-		if(indice != qtdCompras){
-			this.compras[indice] = compra;
-		}else{
-			//
-		}
-	}
-
-
-	public Compra procurar(String codigoPedido){
-		int indice = this.procurarIndice(codigoPedido);
-		Compra resultado = null;
-		if(indice != this.qtdCompras){
-			resultado = this.compras[indice];
-		}
-		return resultado;
-	}
-
-	public void listar(){
-		for(int i=0; i< this.qtdCompras;i++){
-			System.out.println(""+compras[i]);
-		}
-	}
-	
-	
-	
-	public void remover(String codigoPedido){
-		
-		int indice = this.procurarIndice(codigoPedido);
-		if(indice != this.qtdCompras){
-			this.compras[indice] = this.compras[this.qtdCompras - 1];
-			this.compras[this.qtdCompras - 1] = null;
-			this.qtdCompras = this.qtdCompras - 1;
-		}else{
-			//
-		}
-
-	}
-
-
-	private int procurarIndice(String codigoPedido) {
-		int indice = 0;
-		boolean achou = false;
-		while ((!achou) && (indice < this.qtdCompras)) {
-			if (codigoPedido.equals(this.compras[indice].getCodigoPedido())) {
-				achou = true;
-			} else {
-				indice++;
+		int i = 0;
+		for (Compra c : this.compras) {
+			i++;
+			if (c.getCodigoPedido().equals(codigoPedido)) {
+				this.compras.remove(i);
+				return true;
 			}
-		}
-		return indice;
-	}	
 
-
-	private void duplicaArrayCompras() {
-
-		if (this.compras != null && this.compras.length > 0) {
-			Compra[] arrayDuplicado = new Compra[this.compras.length * 2];
-
-			for (int i = 0; i < this.compras.length; i++) {
-				arrayDuplicado[i] = this.compras[i];
-			}
-			this.compras = arrayDuplicado;
 		}
 
+		return false;
 	}
 
-	
-	public boolean existe(String codigoPedido){
-		boolean existe = false;
-		int indice = this.procurarIndice(codigoPedido);
-		if(indice != this.qtdCompras){
-			existe = true;
-		}
-		return existe;
-	}
 }

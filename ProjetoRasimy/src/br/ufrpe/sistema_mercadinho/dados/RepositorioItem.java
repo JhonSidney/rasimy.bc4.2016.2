@@ -1,139 +1,76 @@
 package br.ufrpe.sistema_mercadinho.dados;
+
+import java.util.ArrayList;
+
 import br.ufrpe.sistema_mercadinho.negocio.beans.Item;
 
-public class RepositorioItem implements IRepositorioItem{
+public class RepositorioItem implements IRepositorioItem {
 
-	//ATRIBUTOS
-	private Item[] itens;
-	private int qtdItens;
+	// ATRIBUTOS
+	private ArrayList<Item> itens;
 	public static RepositorioItem instancia;
 
+	private RepositorioItem() {
+		this.itens = new ArrayList<Item>();
 
-	public RepositorioItem(int tamanho){
-		this.itens = new Item[tamanho];
-		this.qtdItens = 0; 
-		
 	}
 
-	public RepositorioItem(){
-		
-	}
 	
-	public static RepositorioItem getInstance()	{
-		
-		if(instancia == null){
+	
+	
+	public static RepositorioItem getInstance() {
+
+		if (instancia == null) {
 			instancia = new RepositorioItem();
 		}
 		return instancia;
 	}
-	
-	
-	
-	
-	/*
-	public Item[] getItens(){
+
+	@Override
+	public boolean cadastrar(Item item) {
+		this.itens.add(item);
+		return true;
+	}
+
+	@Override
+	public boolean atualizar(Item item) {
+
+		int i = 0;
+		for (Item a : this.itens) {
+			i++;
+			if (a.getCodigoProduto().equals(item.getCodigoProduto())) {
+				this.itens.add(i, item);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	@Override
+	public Item procurar(String codigoProduto) {
+		for (Item a : this.itens) {
+			if (a.getCodigoProduto().equals(codigoProduto)) {
+				return a;
+			}
+		}
+		return null;
+	}
+
+	@Override
+	public ArrayList<Item> listar() {
 		return this.itens;
 	}
 
-
-	public int getQtdItens(){
-		return this.qtdItens;
-	}
-
-	*/
-	
-	
-	
-	
-	
-	
-	//METODOS
-	
-
-	public void cadastrar(Item item){
-		this.itens[qtdItens] = item;
-		this.qtdItens++;
-		if(this.qtdItens ==  this.itens.length){
-			this.duplicaArrayItens();
-		}
-	}
-
-
-	public void atualizar(Item item){
-		int indice = this.procurarIndice(item.getCodigoProduto());
-		if(indice != qtdItens){
-			this.itens[indice] = item;
-		}else{
-			//
-		}
-	}
-
-
-	public Item procurar(String codigoProduto){
-		int indice = this.procurarIndice(codigoProduto);
-		Item resultado = null;
-		if(indice != this.qtdItens){
-			resultado = this.itens[indice];
-		}
-		return resultado;
-	}
-
-	public void listar(){
-		for(int i=0; i< this.qtdItens;i++){
-			System.out.println(""+itens[i]);
-		}
-	}
-	
-	
-	
-	public void remover(String codigoProduto){
-		
-		int indice = this.procurarIndice(codigoProduto);
-		if(indice != this.qtdItens){
-			this.itens[indice] = this.itens[this.qtdItens - 1];
-			this.itens[this.qtdItens - 1] = null;
-			this.qtdItens = this.qtdItens - 1;
-		}else{
-			//
-		}
-
-	}
-
-
-	private int procurarIndice(String codigoProduto) {
-		int indice = 0;
-		boolean achou = false;
-		while ((!achou) && (indice < this.qtdItens)) {
-			if (codigoProduto.equals(this.itens[indice].getCodigoProduto())) {
-				achou = true;
-			} else {
-				indice++;
+	@Override
+	public boolean remover(String codigoProduto) {
+		int i = 0;
+		for (Item a : this.itens) {
+			i++;
+			if (a.getCodigoProduto().equals(codigoProduto)) {
+				this.itens.remove(i);
+				return true;
 			}
 		}
-		return indice;
-	}	
-
-
-	private void duplicaArrayItens() {
-
-		if (this.itens != null && this.itens.length > 0) {
-			Item[] arrayDuplicado = new Item[this.itens.length * 2];
-
-			for (int i = 0; i < this.itens.length; i++) {
-				arrayDuplicado[i] = this.itens[i];
-			}
-			this.itens = arrayDuplicado;
-		}
-
-	}
-
-	
-	public boolean existe(String codigoProduto){
-		boolean existe = false;
-		int indice = this.procurarIndice(codigoProduto);
-		if(indice != this.qtdItens){
-			existe = true;
-		}
-		return existe;
+		return false;
 	}
 }

@@ -1,21 +1,19 @@
 package br.ufrpe.sistema_mercadinho.dados;
 
+import java.util.ArrayList;
+
 import br.ufrpe.sistema_mercadinho.negocio.beans.Fornecedor;
 
 public interface IRepositorioFornecedor {
 
-	public void cadastrar(Fornecedor fornecedor);
+	public boolean cadastrar(Fornecedor fornecedor);
 
-	public void atualizar(Fornecedor fornecedor);
+	public boolean atualizar(Fornecedor fornecedor);
 
-	public Fornecedor procurar(String id);
+	public Fornecedor procurar(String cnpj);
 
-	public void listar();
+	public ArrayList<Fornecedor> listar();
 
-	public void remover(String id);
-	
-	
-	
-	
-	
+	public boolean remover(String cnpj);
+
 }
