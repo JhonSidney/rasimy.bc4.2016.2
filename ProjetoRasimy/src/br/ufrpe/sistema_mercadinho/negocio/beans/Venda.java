@@ -1,6 +1,6 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
-public class Venda  {
+public class Venda {
 	private String codigoVenda;
 	private Funcionario funcionario;
 	private String dataVenda;
@@ -10,8 +10,8 @@ public class Venda  {
 	private double troco;
 	private Item item;
 
-	public Venda(String codigoVenda, Funcionario funcionario,String dataVenda
-			,double valorCompra, double valorRecebido, double desconto,
+	public Venda(String codigoVenda, Funcionario funcionario, String dataVenda,
+			double valorCompra, double valorRecebido, double desconto,
 			double troco, Item item) {
 
 		this.setCodigoVenda(codigoVenda);
@@ -88,10 +88,10 @@ public class Venda  {
 		this.item = item;
 	}
 
-	public boolean equals(Object o){
+	public boolean equals(Object o) {
 		boolean igual = false;
-		if(((Venda)o).getCodigoVenda().equals(this.codigoVenda)){
-			igual = true; 
+		if (((Venda) o).getCodigoVenda().equals(this.codigoVenda)) {
+			igual = true;
 		}
 		return igual;
 	}

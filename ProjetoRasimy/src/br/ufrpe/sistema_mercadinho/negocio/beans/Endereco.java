@@ -10,8 +10,8 @@ public class Endereco {
 	private String cidade;
 	private String estado;
 
-	public Endereco(String logradouro, String bairro, String cep, String numero, String complemento, String cidade,
-			String estado) {
+	public Endereco(String logradouro, String bairro, String cep,
+			String numero, String complemento, String cidade, String estado) {
 
 		this.setLogradouro(logradouro);
 		this.setBairro(bairro);
@@ -84,15 +84,18 @@ public class Endereco {
 		boolean igual = false;
 
 		if (o instanceof Endereco) {
-			if (((Endereco) o).getCep().equals(this.getCep()) && ((Endereco) o).getNumero().equals(this.getNumero()))
+			if (((Endereco) o).getCep().equals(this.getCep())
+					&& ((Endereco) o).getNumero().equals(this.getNumero()))
 				igual = true;
 		}
 		return igual;
 	}
 
 	public String toString() {
-		return "Endereco [logradouro=" + logradouro + ", bairro=" + bairro + ", cep=" + cep + ", numero=" + numero
-				+ ", complemento=" + complemento + ", cidade=" + cidade + ", estado=" + estado + "]";
+		return "Endereco [logradouro=" + logradouro + ", bairro=" + bairro
+				+ ", cep=" + cep + ", numero=" + numero + ", complemento="
+				+ complemento + ", cidade=" + cidade + ", estado=" + estado
+				+ "]";
 	}
 
 }

@@ -1,5 +1,7 @@
 package br.ufrpe.sistema_mercadinho.negocio;
 
+import java.util.ArrayList;
+
 import br.ufrpe.sistema_mercadinho.negocio.beans.Administrador;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Compra;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Fornecedor;
@@ -10,170 +12,156 @@ import br.ufrpe.sistema_mercadinho.negocio.beans.Venda;
 public class SistemaMercadinho {
 
 	private static SistemaMercadinho instance;
-	private CadastroAdministrador administradores;
-	private CadastroFuncionario funcionarios;
-	private CadastroFornecedor fornecedores;
-	private CadastroCompra compras;
-	private CadastroItem itens;
-	private CadastroVenda vendas;
-	private CadastroLogin logins;
+	private ControladorAdministrador administradores;
+	private ControladorFuncionario funcionarios;
+	private ControladorFornecedor fornecedores;
+	private ControladorCompra compras;
+	private ControladorItem itens;
+	private ControladorVenda vendas;
+	private ControladorLogin logins;
 
-
-	private SistemaMercadinho(){
-		this.administradores = new CadastroAdministrador();
-		this.funcionarios = new CadastroFuncionario();
-		this.fornecedores = new CadastroFornecedor();
-		this.compras = new CadastroCompra();
-		this.itens = new CadastroItem();
-		this.logins = new CadastroLogin();
+	private SistemaMercadinho() {
+		this.administradores = new ControladorAdministrador();
+		this.funcionarios = new ControladorFuncionario();
+		this.fornecedores = new ControladorFornecedor();
+		this.compras = new ControladorCompra();
+		this.itens = new ControladorItem();
+		this.vendas = new ControladorVenda();
+		this.logins = new ControladorLogin();
 	}
 
-
-	public static SistemaMercadinho getInstance(){
-		if(instance == null){
+	public static SistemaMercadinho getInstance() {
+		if (instance == null) {
 			instance = new SistemaMercadinho();
 		}
 		return instance;
 	}
 
-	
-
-	public void cadastrarAdministrador(Administrador adm){
-		administradores.cadastrarAdministrador(adm);
+	public void cadastrarAdministrador(Administrador adm) {
+		this.administradores.cadastrar(adm);
 	}
 
-	public void atualizarAdministrador(Administrador adm){
-		administradores.atualizarAdministrador(adm);
+	public void atualizarAdministrador(Administrador adm) {
+		this.administradores.atualizar(adm);
 	}
 
-	public Administrador procurarAdministrador (String id){
-		return administradores.procurarAdministrador(id);
+	public Administrador procurarAdministrador(String cpf) {
+		return administradores.procurar(cpf);
+
 	}
 
-	public void  listarAdministrador() {
-		administradores.listarAdministrador();
+	public ArrayList<Administrador> listarAdministrador() {
+		return this.administradores.listar();
 	}
 
-	public void descadastrarAdministrador(String id){
-		administradores.descadastrarAdministrador(id);
+	public void removerAdministrador(String cpf) {
+		this.administradores.remover(cpf);
 	}
 
-
-	
-
-	public void cadastrarCompra(Compra compra){
-		compras.cadastrarCompra(compra);
+	public void cadastrarCompra(Compra compra) {
+		this.compras.cadastrar(compra);
 	}
 
-	public void atualizarCompra(Compra compra){
-		compras.atualizarCompra(compra);
+	public void atualizarCompra(Compra compra) {
+		this.compras.atualizar(compra);
 	}
 
-	public Compra procurarCompra(String codigoPedido){
-		return compras.procurarCompra(codigoPedido);
+	public Compra procurarCompra(String codigoPedido) {
+		return this.procurarCompra(codigoPedido);
 	}
 
-	public void listarCompra(){
-		compras.listarCompra();
+	public ArrayList<Compra> listarCompras() {
+		return this.compras.listar();
 	}
 
-	public void descadastrarCompra(String codigoPedido){
-		compras.descadastrarCompra(codigoPedido);
+	public void removerCompras(String codigoPedido) {
+		this.compras.remover(codigoPedido);
 	}
 
-	
-	public void cadastrarFornecedor(Fornecedor fornecedor){
-		fornecedores.cadastrarFornecedor(fornecedor);;
+	public void cadastrarFornecedor(Fornecedor fornecedor) {
+		this.fornecedores.cadastrar(fornecedor);
 	}
 
-	public void atualizarFornecedor(Fornecedor fornecedor){
-		fornecedores.atualizarFornecedor(fornecedor);
+	public void atualizarFornecedor(Fornecedor fornecedor) {
+		this.fornecedores.atualizar(fornecedor);
 	}
 
-	public Fornecedor procurarFornecedor (String id){
-		return fornecedores.procurarFornecedor(id);
+	public Fornecedor procurarFornecedor(String cnpj) {
+		return this.fornecedores.procurar(cnpj);
 	}
 
-	public void  listarFornecedor() {
-		fornecedores.listarFornecedor();
+	public ArrayList<Fornecedor> listarFornecedor() {
+		return this.fornecedores.listar();
 	}
 
-	public void descadastrarFornecedor(String id){
-		fornecedores.descadastrarFornecedor(id);
+	public void removerFornecedor(String cnpj) {
+		this.fornecedores.remover(cnpj);
 	}
 
+	public void cadastrarFuncionario(Funcionario funcionario) {
+		this.funcionarios.cadastrar(funcionario);
+	}
 
-	
-	public void cadastrarFuncionario(Funcionario funcionario){
-		funcionarios.cadastrarFuncionario(funcionario);
+	public void atualizarFunciona(Funcionario funcionario) {
+		this.funcionarios.atualizar(funcionario);
 	}
-	
-	public void atualizarFuncionario(Funcionario funcionario){
-		 funcionarios.atualizarFuncionario(funcionario);
+
+	public Funcionario procurarFuncionario(String cpf) {
+		return this.funcionarios.procurar(cpf);
 	}
-	
-	public Funcionario procurarFuncionario(String id){
-		return funcionarios.procurarFuncionario(id);
+
+	public ArrayList<Funcionario> listarFuncionario() {
+		return this.funcionarios.listar();
 	}
-	
-	public void listarFuncionario(){
-		funcionarios.listarFuncionario();
+
+	public void removerFuncionario(String cpf) {
+		this.funcionarios.remover(cpf);
 	}
-	
-	public void descadastrarFuncionario(String id){
-		funcionarios.descadastrarFuncionario(id);
+
+	public void cadastrarItem(Item item) {
+		this.itens.cadastrar(item);
 	}
-	
-	
-	
-	public void cadastrarItem(Item item){
-		itens.cadastrarItem(item);
+
+	public void atualizarItem(Item item) {
+		this.itens.atualizar(item);
 	}
-	
-	public void atualizarItem(Item item){
-		itens.atualizarItem(item);
+
+	public Item procurarItem(String codigoProduto) {
+		return this.itens.procurar(codigoProduto);
+
 	}
-	
-	public Item procurarItem(String codigoProduto){
-		return itens.procurarItem(codigoProduto);
+
+	public ArrayList<Item> listarItem() {
+		return this.itens.listar();
 	}
-	
-	public void listarItem(){
-		itens.listarItem();
-	}
-	
-	public void descadastrarItem(String codigoProduto){
-		itens.descadastrarItem(codigoProduto);
+
+	public void removerItem(String codigoProduto) {
+		this.itens.remover(codigoProduto);
 	}
 	
 	
-	
-	public void cadastrarVenda(Venda venda){
-		vendas.cadastrarVenda(venda);
+	public void cadastrarVenda(Venda venda) {
+		this.vendas.cadastrar(venda);
+	}
+
+	public void atualizarVenda(Venda venda) {
+		this.vendas.atualizar(venda);
+	}
+
+	public Venda procurarVenda(String codigoVenda) {
+		return this.vendas.procurar(codigoVenda);
+	}
+
+	public ArrayList<Venda> listarVenda() {
+		return this.vendas.listar();
+	}
+
+	public void removerVenda(String codigoVenda) {
+		this.vendas.remover(codigoVenda);
 	}
 	
-	public void atualizarVenda(Venda venda){
-		vendas.atualizarVenda(venda);
+	public boolean efetuarLogin(String cpf, String senha) {
+		return this.logins.efetuarLogin(cpf, senha);
 	}
-	
-	
-	public Venda procurarVenda(String codigoVenda){
-		return vendas.procurarVenda(codigoVenda);
-	}
-	
-	
-	public void listarVenda(){
-		vendas.listarVenda();
-	}
-	
-	public void descadastrarVenda(String codigoVenda){
-		vendas.descadastrarVenda(codigoVenda);
-	}
-	
-	
-	public boolean efetuarLogin(String id, String senha){
-		return logins.efetuarLogin(id, senha);
-	}
-	
 	
 }

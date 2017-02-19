@@ -1,7 +1,5 @@
 package br.ufrpe.sistema_mercadinho.negocio.beans;
 
-
-
 public class Compra {
 
 	private String codigoPedido;
@@ -12,12 +10,9 @@ public class Compra {
 	private int quantidade;
 	private Item item;
 
-
-
 	public Compra(String codigoPedido, String serie, String dataPedido,
-			Fornecedor fornecedor,String tipoPagamento ,int quantidade ,
+			Fornecedor fornecedor, String tipoPagamento, int quantidade,
 			Item item) {
-
 
 		this.setCodigoPedido(codigoPedido);
 		this.setSerie(serie);
@@ -85,19 +80,17 @@ public class Compra {
 		this.item = item;
 	}
 
-
-	public boolean equals(Object o){
+	public boolean equals(Object o) {
 		boolean igual = false;
 
-		if(o  instanceof Compra){
-			if(((Compra) o).getCodigoPedido().equals(this.getCodigoPedido())){
+		if (o instanceof Compra) {
+			if (((Compra) o).getCodigoPedido().equals(this.getCodigoPedido())) {
 				igual = true;
 			}
 		}
 		return igual;
 
 	}
-
 
 	public String toString() {
 		return "Compra [codigoPedido=" + codigoPedido + ", serie=" + serie

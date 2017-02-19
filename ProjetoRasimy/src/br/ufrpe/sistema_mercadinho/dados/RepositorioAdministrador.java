@@ -56,6 +56,7 @@ public class RepositorioAdministrador implements IRepositorioAdministrador {
 	@Override
 	public ArrayList<Administrador> listar() {
 		return this.administradores;
+	
 	}
 
 	@Override

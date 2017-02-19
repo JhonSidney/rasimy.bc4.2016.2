@@ -10,7 +10,7 @@ public class Funcionario extends Pessoa {
 
 	public Funcionario(String telefone, String email, String endereco, String nome, String cpf, String rg,
 			String dataEmissao, String orgaoEmissao, String sexo, String estadoCivil, String nacionalidade,
-			String naturalidade, int senha) {
+			String naturalidade, String senha) {
 		super(telefone, email, endereco, nome, cpf, rg, dataEmissao, orgaoEmissao, sexo, estadoCivil, nacionalidade,
 				naturalidade, senha);
 		this.setFuncao(funcao);
