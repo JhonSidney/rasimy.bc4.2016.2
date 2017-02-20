@@ -3,6 +3,7 @@ package br.ufrpe.sistema_mercadinho.negocio;
 import java.util.ArrayList;
 
 import br.ufrpe.sistema_mercadinho.dados.RepositorioItem;
+import br.ufrpe.sistema_mercadinho.exceptions.*;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Item;
 
 public class ControladorItem {
@@ -13,20 +14,28 @@ public class ControladorItem {
 		this.repositorioItem = RepositorioItem.getInstance();
 	}
 
-	public void cadastrar(Item item) {
+	public void cadastrar(Item item) throws ItemJaExisteException {
 		if (item != null && !this.existe(item.getCodigoProduto())) {
 			this.repositorioItem.cadastrar(item);
+		} else {
+			throw new ItemJaExisteException();
 		}
 	}
 
-	public void atualizar(Item item) {
+	public void atualizar(Item item) throws ItemNaoExisteException {
 		if (item != null && !this.existe(item.getCodigoProduto())) {
 			this.repositorioItem.atualizar(item);
+		} else {
+			throw new ItemNaoExisteException();
 		}
 	}
 
-	public Item procurar(String codigoProduto) {
-		return this.repositorioItem.procurar(codigoProduto);
+	public Item procurar(String codigoProduto) throws ItemNaoExisteException {
+		Item resultado = this.repositorioItem.procurar(codigoProduto);
+		if (resultado == null) {
+			throw new ItemNaoExisteException();
+		}
+		return resultado;
 	}
 
 	public ArrayList<Item> listar() {
@@ -43,13 +52,12 @@ public class ControladorItem {
 		return false;
 	}
 
-	public void remover(String codigoProduto) {
+	public void remover(String codigoProduto) throws ItemNaoExisteException {
 		Item item = this.repositorioItem.procurar(codigoProduto);
-
 		if (item != null) {
 			this.repositorioItem.remover(codigoProduto);
 		} else {
-			// Conta inexistente ou conta ainda ativa
+			throw new ItemNaoExisteException();
 		}
 	}
 

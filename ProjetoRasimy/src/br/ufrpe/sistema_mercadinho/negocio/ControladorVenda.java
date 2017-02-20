@@ -3,6 +3,7 @@ package br.ufrpe.sistema_mercadinho.negocio;
 import java.util.ArrayList;
 
 import br.ufrpe.sistema_mercadinho.dados.RepositorioVenda;
+import br.ufrpe.sistema_mercadinho.exceptions.*;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Venda;
 
 public class ControladorVenda {
@@ -13,20 +14,28 @@ public class ControladorVenda {
 		this.repositorioVenda = RepositorioVenda.getInstance();
 	}
 
-	public void cadastrar(Venda venda) {
+	public void cadastrar(Venda venda) throws VendaJaExisteException {
 		if (venda != null && !this.existe(venda.getCodigoVenda())) {
 			this.repositorioVenda.cadastrar(venda);
+		} else {
+			throw new VendaJaExisteException();
 		}
 	}
 
-	public void atualizar(Venda venda) {
+	public void atualizar(Venda venda) throws VendaNaoExisteException {
 		if (venda != null && !this.existe(venda.getCodigoVenda())) {
 			this.repositorioVenda.atualizar(venda);
+		} else {
+			throw new VendaNaoExisteException();
 		}
 	}
 
-	public Venda procurar(String codigoVenda) {
-		return this.repositorioVenda.procurar(codigoVenda);
+	public Venda procurar(String codigoVenda) throws VendaNaoExisteException {
+		Venda resultado = this.repositorioVenda.procurar(codigoVenda);
+		if (resultado == null) {
+			throw new VendaNaoExisteException();
+		}
+		return resultado;
 	}
 
 	public ArrayList<Venda> listar() {
@@ -44,13 +53,13 @@ public class ControladorVenda {
 		return resultado;
 	}
 
-	public void remover(String codigoVenda) {
+	public void remover(String codigoVenda) throws VendaNaoExisteException {
 		Venda item = this.repositorioVenda.procurar(codigoVenda);
 
 		if (item != null) {
 			this.repositorioVenda.remover(codigoVenda);
 		} else {
-			// Conta inexistente ou conta ainda ativa
+			throw new VendaNaoExisteException();
 		}
 	}
 

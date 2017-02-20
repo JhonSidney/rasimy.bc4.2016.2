@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import br.ufrpe.sistema_mercadinho.dados.IRepositorioCompra;
 import br.ufrpe.sistema_mercadinho.dados.RepositorioCompra;
+import br.ufrpe.sistema_mercadinho.exceptions.*;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Compra;
 
 public class ControladorCompra {
@@ -14,20 +15,28 @@ public class ControladorCompra {
 		this.repositorioCompra = RepositorioCompra.getInstance();
 	}
 
-	public void cadastrar(Compra compra) {
+	public void cadastrar(Compra compra) throws CompraJaExisteException {
 		if (compra != null && !this.existe(compra.getCodigoPedido())) {
 			this.repositorioCompra.cadastrar(compra);
+		} else {
+			throw new CompraJaExisteException();
 		}
 	}
 
-	public void atualizar(Compra compra) {
+	public void atualizar(Compra compra) throws CompraNaoExisteException {
 		if (compra != null && this.existe(compra.getCodigoPedido())) {
 			this.repositorioCompra.atualizar(compra);
+		} else {
+			throw new CompraNaoExisteException();
 		}
 	}
 
-	public Compra procurarCompra(String codigoPedido) {
-		return this.repositorioCompra.procurar(codigoPedido);
+	public Compra procurarCompra(String codigoPedido) throws CompraNaoExisteException {
+		Compra resultado = this.repositorioCompra.procurar(codigoPedido);
+		if (resultado == null) {
+			throw new CompraNaoExisteException();
+		}
+		return resultado;
 	}
 
 	public ArrayList<Compra> listar() {
@@ -44,12 +53,12 @@ public class ControladorCompra {
 		return false;
 	}
 
-	public void remover(String codigoPedido) {
+	public void remover(String codigoPedido) throws CompraNaoExisteException {
 		Compra compra = this.repositorioCompra.procurar(codigoPedido);
 		if (compra != null) {
 			this.repositorioCompra.remover(codigoPedido);
 		} else {
-			// Conta inexistente ou conta ainda ativa
+			throw new CompraNaoExisteException();
 		}
 	}
 

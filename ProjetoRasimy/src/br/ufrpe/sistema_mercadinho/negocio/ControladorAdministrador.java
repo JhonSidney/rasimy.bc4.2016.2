@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import br.ufrpe.sistema_mercadinho.dados.IRepositorioAdministrador;
 import br.ufrpe.sistema_mercadinho.dados.RepositorioAdministrador;
+import br.ufrpe.sistema_mercadinho.exceptions.*;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Administrador;
 
 public class ControladorAdministrador {
@@ -13,28 +14,35 @@ public class ControladorAdministrador {
 		this.repositorioAdm = RepositorioAdministrador.getInstance();
 	}
 
-	public void cadastrar(Administrador adm) {
+	public void cadastrar(Administrador adm)
+			throws AdministradorJaCadastradoException {
 		if (adm != null && !this.existe(adm.getCpf())) {
 			this.repositorioAdm.cadastrar(adm);
 		} else {
-			// exceção com usuario;
+			throw new AdministradorJaCadastradoException();
 		}
 	}
 
-	public void atualizar(Administrador adm) {
+	public void atualizar(Administrador adm)
+			throws AdministradorNaoExisteException {
 		if (adm != null && this.existe(adm.getCpf())) {
 			this.repositorioAdm.atualizar(adm);
 		} else {
-			// exceção
+			throw new AdministradorNaoExisteException();
 		}
 	}
 
-	public Administrador procurar(String cpf) {
-		return this.repositorioAdm.procurar(cpf);
+	public Administrador procurar(String cpf)
+			throws AdministradorNaoExisteException {
+		Administrador resultado = this.repositorioAdm.procurar(cpf);
+		if (resultado == null) {
+			throw new AdministradorNaoExisteException();
+		}
+		return resultado;
 	}
 
 	public ArrayList<Administrador> listar() {
-		 return this.repositorioAdm.listar();
+		return this.repositorioAdm.listar();
 	}
 
 	private boolean existe(String cpf) {
@@ -48,12 +56,12 @@ public class ControladorAdministrador {
 		return resultado;
 	}
 
-	public void remover(String cpf) {
+	public void remover(String cpf) throws AdministradorNaoExisteException {
 		Administrador administrador = this.repositorioAdm.procurar(cpf);
 		if (administrador != null) {
 			this.repositorioAdm.remover(cpf);
 		} else {
-			// Conta inexistente ou conta ainda ativa
+			throw new AdministradorNaoExisteException();
 		}
 	}
 }

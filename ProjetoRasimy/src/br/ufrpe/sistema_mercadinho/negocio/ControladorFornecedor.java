@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import br.ufrpe.sistema_mercadinho.dados.IRepositorioFornecedor;
 import br.ufrpe.sistema_mercadinho.dados.RepositorioFornecedor;
+import br.ufrpe.sistema_mercadinho.exceptions.*;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Fornecedor;
 
 public class ControladorFornecedor {
@@ -14,22 +15,28 @@ public class ControladorFornecedor {
 		this.repositorioFornecedor = RepositorioFornecedor.getInstance();
 	}
 
-	public void cadastrar(Fornecedor fornecedor) {
+	public void cadastrar(Fornecedor fornecedor) throws FornecedorJaExisteException {
 		if (fornecedor != null && !this.existe(fornecedor.getCnpj())) {
 			this.repositorioFornecedor.cadastrar(fornecedor);
 		} else {
-			// interface com usuario;
+			throw new FornecedorJaExisteException();
 		}
 	}
 
-	public void atualizar(Fornecedor fornecedor) {
+	public void atualizar(Fornecedor fornecedor) throws FornecedorNaoExisteException {
 		if (fornecedor != null && !this.existe(fornecedor.getCnpj())) {
 			this.repositorioFornecedor.atualizar(fornecedor);
+		} else {
+			throw new FornecedorNaoExisteException();
 		}
 	}
 
-	public Fornecedor procurar(String cnpj) {
-		return this.repositorioFornecedor.procurar(cnpj);
+	public Fornecedor procurar(String cnpj) throws FornecedorNaoExisteException {
+		Fornecedor resultado = this.repositorioFornecedor.procurar(cnpj);
+		if (resultado == null) {
+			throw new FornecedorNaoExisteException();
+		}
+		return resultado;
 	}
 
 	public ArrayList<Fornecedor> listar() {
@@ -46,12 +53,12 @@ public class ControladorFornecedor {
 		return false;
 	}
 
-	public void remover(String cnpj) {
+	public void remover(String cnpj) throws FornecedorNaoExisteException {
 		Fornecedor fornecedor = this.repositorioFornecedor.procurar(cnpj);
 		if (fornecedor != null) {
 			this.repositorioFornecedor.remover(cnpj);
 		} else {
-			// Conta inexistente ou conta ainda ativa
+			throw new FornecedorNaoExisteException();
 		}
 	}
 
