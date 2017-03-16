@@ -15,26 +15,26 @@ public class ControladorCompra {
 		this.repositorioCompra = RepositorioCompra.getInstance();
 	}
 
-	public void cadastrar(Compra compra) throws CompraJaExisteException {
+	public void cadastrar(Compra compra) throws ErroDeNegocioException {
 		if (compra != null && !this.existe(compra.getCodigoPedido())) {
 			this.repositorioCompra.cadastrar(compra);
 		} else {
-			throw new CompraJaExisteException();
+			throw new ErroDeNegocioException("Compra Ja Existe !");
 		}
 	}
 
-	public void atualizar(Compra compra) throws CompraNaoExisteException {
+	public void atualizar(Compra compra) throws ErroDeNegocioException {
 		if (compra != null && this.existe(compra.getCodigoPedido())) {
 			this.repositorioCompra.atualizar(compra);
 		} else {
-			throw new CompraNaoExisteException();
+			throw new ErroDeNegocioException("Compra Não Existe !");
 		}
 	}
 
-	public Compra procurarCompra(String codigoPedido) throws CompraNaoExisteException {
+	public Compra procurarCompra(String codigoPedido) throws ErroDeNegocioException {
 		Compra resultado = this.repositorioCompra.procurar(codigoPedido);
 		if (resultado == null) {
-			throw new CompraNaoExisteException();
+			throw new ErroDeNegocioException("Compra Não Existe !");
 		}
 		return resultado;
 	}
@@ -53,12 +53,12 @@ public class ControladorCompra {
 		return false;
 	}
 
-	public void remover(String codigoPedido) throws CompraNaoExisteException {
+	public void remover(String codigoPedido) throws ErroDeNegocioException {
 		Compra compra = this.repositorioCompra.procurar(codigoPedido);
 		if (compra != null) {
 			this.repositorioCompra.remover(codigoPedido);
 		} else {
-			throw new CompraNaoExisteException();
+			throw new ErroDeNegocioException("Compra Não Existe !");
 		}
 	}
 

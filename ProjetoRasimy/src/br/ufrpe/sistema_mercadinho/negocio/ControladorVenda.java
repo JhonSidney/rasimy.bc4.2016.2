@@ -14,26 +14,26 @@ public class ControladorVenda {
 		this.repositorioVenda = RepositorioVenda.getInstance();
 	}
 
-	public void cadastrar(Venda venda) throws VendaJaExisteException {
+	public void cadastrar(Venda venda) throws ErroDeNegocioException {
 		if (venda != null && !this.existe(venda.getCodigoVenda())) {
 			this.repositorioVenda.cadastrar(venda);
 		} else {
-			throw new VendaJaExisteException();
+			throw new ErroDeNegocioException("Venda Ja Existe !");
 		}
 	}
 
-	public void atualizar(Venda venda) throws VendaNaoExisteException {
+	public void atualizar(Venda venda) throws ErroDeNegocioException {
 		if (venda != null && !this.existe(venda.getCodigoVenda())) {
 			this.repositorioVenda.atualizar(venda);
 		} else {
-			throw new VendaNaoExisteException();
+			throw new ErroDeNegocioException("Venda Não Existe !");
 		}
 	}
 
-	public Venda procurar(String codigoVenda) throws VendaNaoExisteException {
+	public Venda procurar(String codigoVenda) throws ErroDeNegocioException {
 		Venda resultado = this.repositorioVenda.procurar(codigoVenda);
 		if (resultado == null) {
-			throw new VendaNaoExisteException();
+			throw new ErroDeNegocioException("Venda Não Existe !");
 		}
 		return resultado;
 	}
@@ -53,13 +53,13 @@ public class ControladorVenda {
 		return resultado;
 	}
 
-	public void remover(String codigoVenda) throws VendaNaoExisteException {
+	public void remover(String codigoVenda) throws ErroDeNegocioException {
 		Venda item = this.repositorioVenda.procurar(codigoVenda);
 
 		if (item != null) {
 			this.repositorioVenda.remover(codigoVenda);
 		} else {
-			throw new VendaNaoExisteException();
+			throw new ErroDeNegocioException("Venda Não Existe !");
 		}
 	}
 

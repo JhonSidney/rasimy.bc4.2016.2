@@ -15,26 +15,26 @@ public class ControladorFornecedor {
 		this.repositorioFornecedor = RepositorioFornecedor.getInstance();
 	}
 
-	public void cadastrar(Fornecedor fornecedor) throws FornecedorJaExisteException {
+	public void cadastrar(Fornecedor fornecedor) throws ErroDeNegocioException {
 		if (fornecedor != null && !this.existe(fornecedor.getCnpj())) {
 			this.repositorioFornecedor.cadastrar(fornecedor);
 		} else {
-			throw new FornecedorJaExisteException();
+			throw new ErroDeNegocioException("Fornecedor Ja Existe !");
 		}
 	}
 
-	public void atualizar(Fornecedor fornecedor) throws FornecedorNaoExisteException {
+	public void atualizar(Fornecedor fornecedor) throws ErroDeNegocioException {
 		if (fornecedor != null && !this.existe(fornecedor.getCnpj())) {
 			this.repositorioFornecedor.atualizar(fornecedor);
 		} else {
-			throw new FornecedorNaoExisteException();
+			throw new ErroDeNegocioException("Fornecedor Não Existe !");
 		}
 	}
 
-	public Fornecedor procurar(String cnpj) throws FornecedorNaoExisteException {
+	public Fornecedor procurar(String cnpj) throws ErroDeNegocioException {
 		Fornecedor resultado = this.repositorioFornecedor.procurar(cnpj);
 		if (resultado == null) {
-			throw new FornecedorNaoExisteException();
+			throw new ErroDeNegocioException("Fornecedor Não Existe !");
 		}
 		return resultado;
 	}
@@ -53,12 +53,12 @@ public class ControladorFornecedor {
 		return false;
 	}
 
-	public void remover(String cnpj) throws FornecedorNaoExisteException {
+	public void remover(String cnpj) throws ErroDeNegocioException {
 		Fornecedor fornecedor = this.repositorioFornecedor.procurar(cnpj);
 		if (fornecedor != null) {
 			this.repositorioFornecedor.remover(cnpj);
 		} else {
-			throw new FornecedorNaoExisteException();
+			throw new ErroDeNegocioException("Fornecedor Não Existe !");
 		}
 	}
 

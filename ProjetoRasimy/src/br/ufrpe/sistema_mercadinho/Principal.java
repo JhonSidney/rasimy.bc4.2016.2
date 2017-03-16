@@ -1,11 +1,6 @@
 package br.ufrpe.sistema_mercadinho;
 
-import br.ufrpe.sistema_mercadinho.exceptions.AdministradorJaCadastradoException;
-import br.ufrpe.sistema_mercadinho.exceptions.CompraJaExisteException;
-import br.ufrpe.sistema_mercadinho.exceptions.FornecedorJaExisteException;
-import br.ufrpe.sistema_mercadinho.exceptions.FuncionarioJaExisteException;
-import br.ufrpe.sistema_mercadinho.exceptions.ItemJaExisteException;
-import br.ufrpe.sistema_mercadinho.exceptions.VendaJaExisteException;
+import br.ufrpe.sistema_mercadinho.exceptions.ErroDeNegocioException;
 import br.ufrpe.sistema_mercadinho.negocio.SistemaMercadinho;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Administrador;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Compra;
@@ -34,19 +29,9 @@ public class Principal {
 			fachada.cadastrarFuncionario(funcionario);
 			fachada.cadastrarItem(item);
 			fachada.cadastrarVenda(venda);
-		} catch (AdministradorJaCadastradoException e) {
+		} catch (ErroDeNegocioException e) {
 			System.out.println(e.getMessage());
-		} catch (FuncionarioJaExisteException e) {
-			System.out.println(e.getMessage());
-		} catch (ItemJaExisteException e) {
-			System.out.println(e.getMessage());
-		} catch (VendaJaExisteException e) {
-			System.out.println(e.getMessage());
-		} catch (CompraJaExisteException e) {
-			System.out.println(e.getMessage());
-		} catch (FornecedorJaExisteException e) {
-			System.out.println(e.getMessage());
-		}
+		} 
 	}
 
 	public static void main(String[] args) {

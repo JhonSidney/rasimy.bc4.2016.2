@@ -2,18 +2,7 @@ package br.ufrpe.sistema_mercadinho.negocio;
 
 import java.util.ArrayList;
 
-import br.ufrpe.sistema_mercadinho.exceptions.AdministradorJaCadastradoException;
-import br.ufrpe.sistema_mercadinho.exceptions.AdministradorNaoExisteException;
-import br.ufrpe.sistema_mercadinho.exceptions.CompraJaExisteException;
-import br.ufrpe.sistema_mercadinho.exceptions.CompraNaoExisteException;
-import br.ufrpe.sistema_mercadinho.exceptions.FornecedorJaExisteException;
-import br.ufrpe.sistema_mercadinho.exceptions.FornecedorNaoExisteException;
-import br.ufrpe.sistema_mercadinho.exceptions.FuncionarioJaExisteException;
-import br.ufrpe.sistema_mercadinho.exceptions.FuncionarioNaoExisteException;
-import br.ufrpe.sistema_mercadinho.exceptions.ItemJaExisteException;
-import br.ufrpe.sistema_mercadinho.exceptions.ItemNaoExisteException;
-import br.ufrpe.sistema_mercadinho.exceptions.VendaJaExisteException;
-import br.ufrpe.sistema_mercadinho.exceptions.VendaNaoExisteException;
+import br.ufrpe.sistema_mercadinho.exceptions.ErroDeNegocioException;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Administrador;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Compra;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Fornecedor;
@@ -49,15 +38,15 @@ public class SistemaMercadinho {
 		return instance;
 	}
 
-	public void cadastrarAdministrador(Administrador adm) throws AdministradorJaCadastradoException {
+	public void cadastrarAdministrador(Administrador adm) throws ErroDeNegocioException {
 		this.administradores.cadastrar(adm);
 	}
 
-	public void atualizarAdministrador(Administrador adm) throws AdministradorNaoExisteException {
+	public void atualizarAdministrador(Administrador adm) throws ErroDeNegocioException {
 		this.administradores.atualizar(adm);
 	}
 
-	public Administrador procurarAdministrador(String cpf) throws AdministradorNaoExisteException {
+	public Administrador procurarAdministrador(String cpf) throws ErroDeNegocioException {
 		return administradores.procurar(cpf);
 
 	}
@@ -66,15 +55,15 @@ public class SistemaMercadinho {
 		return this.administradores.listar();
 	}
 
-	public void removerAdministrador(String cpf) throws AdministradorNaoExisteException {
+	public void removerAdministrador(String cpf) throws ErroDeNegocioException {
 		this.administradores.remover(cpf);
 	}
 
-	public void cadastrarCompra(Compra compra) throws CompraJaExisteException {
+	public void cadastrarCompra(Compra compra) throws ErroDeNegocioException {
 		this.compras.cadastrar(compra);
 	}
 
-	public void atualizarCompra(Compra compra) throws CompraNaoExisteException {
+	public void atualizarCompra(Compra compra) throws ErroDeNegocioException {
 		this.compras.atualizar(compra);
 	}
 
@@ -86,19 +75,19 @@ public class SistemaMercadinho {
 		return this.compras.listar();
 	}
 
-	public void removerCompras(String codigoPedido) throws CompraNaoExisteException {
+	public void removerCompras(String codigoPedido) throws ErroDeNegocioException {
 		this.compras.remover(codigoPedido);
 	}
 
-	public void cadastrarFornecedor(Fornecedor fornecedor) throws FornecedorJaExisteException {
+	public void cadastrarFornecedor(Fornecedor fornecedor) throws ErroDeNegocioException {
 		this.fornecedores.cadastrar(fornecedor);
 	}
 
-	public void atualizarFornecedor(Fornecedor fornecedor) throws FornecedorNaoExisteException {
+	public void atualizarFornecedor(Fornecedor fornecedor) throws ErroDeNegocioException {
 		this.fornecedores.atualizar(fornecedor);
 	}
 
-	public Fornecedor procurarFornecedor(String cnpj) throws FornecedorNaoExisteException {
+	public Fornecedor procurarFornecedor(String cnpj) throws ErroDeNegocioException {
 		return this.fornecedores.procurar(cnpj);
 	}
 
@@ -106,19 +95,19 @@ public class SistemaMercadinho {
 		return this.fornecedores.listar();
 	}
 
-	public void removerFornecedor(String cnpj) throws FornecedorNaoExisteException {
+	public void removerFornecedor(String cnpj) throws ErroDeNegocioException {
 		this.fornecedores.remover(cnpj);
 	}
 
-	public void cadastrarFuncionario(Funcionario funcionario) throws FuncionarioJaExisteException {
+	public void cadastrarFuncionario(Funcionario funcionario) throws ErroDeNegocioException {
 		this.funcionarios.cadastrar(funcionario);
 	}
 
-	public void atualizarFunciona(Funcionario funcionario) throws FuncionarioNaoExisteException {
+	public void atualizarFunciona(Funcionario funcionario) throws ErroDeNegocioException {
 		this.funcionarios.atualizar(funcionario);
 	}
 
-	public Funcionario procurarFuncionario(String cpf) throws FuncionarioNaoExisteException {
+	public Funcionario procurarFuncionario(String cpf) throws ErroDeNegocioException {
 		return this.funcionarios.procurar(cpf);
 	}
 
@@ -126,19 +115,19 @@ public class SistemaMercadinho {
 		return this.funcionarios.listar();
 	}
 
-	public void removerFuncionario(String cpf) throws FuncionarioNaoExisteException {
+	public void removerFuncionario(String cpf) throws ErroDeNegocioException {
 		this.funcionarios.remover(cpf);
 	}
 
-	public void cadastrarItem(Item item) throws ItemJaExisteException {
+	public void cadastrarItem(Item item) throws ErroDeNegocioException {
 		this.itens.cadastrar(item);
 	}
 
-	public void atualizarItem(Item item) throws ItemNaoExisteException {
+	public void atualizarItem(Item item) throws ErroDeNegocioException {
 		this.itens.atualizar(item);
 	}
 
-	public Item procurarItem(String codigoProduto) throws ItemNaoExisteException {
+	public Item procurarItem(String codigoProduto) throws ErroDeNegocioException {
 		return this.itens.procurar(codigoProduto);
 
 	}
@@ -147,20 +136,20 @@ public class SistemaMercadinho {
 		return this.itens.listar();
 	}
 
-	public void removerItem(String codigoProduto) throws ItemNaoExisteException {
+	public void removerItem(String codigoProduto) throws ErroDeNegocioException {
 		this.itens.remover(codigoProduto);
 	}
 	
 	
-	public void cadastrarVenda(Venda venda) throws VendaJaExisteException {
+	public void cadastrarVenda(Venda venda) throws ErroDeNegocioException {
 		this.vendas.cadastrar(venda);
 	}
 
-	public void atualizarVenda(Venda venda) throws VendaNaoExisteException {
+	public void atualizarVenda(Venda venda) throws ErroDeNegocioException {
 		this.vendas.atualizar(venda);
 	}
 
-	public Venda procurarVenda(String codigoVenda) throws VendaNaoExisteException {
+	public Venda procurarVenda(String codigoVenda) throws ErroDeNegocioException {
 		return this.vendas.procurar(codigoVenda);
 	}
 
@@ -168,7 +157,7 @@ public class SistemaMercadinho {
 		return this.vendas.listar();
 	}
 
-	public void removerVenda(String codigoVenda) throws VendaNaoExisteException {
+	public void removerVenda(String codigoVenda) throws ErroDeNegocioException {
 		this.vendas.remover(codigoVenda);
 	}
 	

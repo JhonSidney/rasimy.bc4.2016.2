@@ -14,26 +14,26 @@ public class ControladorItem {
 		this.repositorioItem = RepositorioItem.getInstance();
 	}
 
-	public void cadastrar(Item item) throws ItemJaExisteException {
+	public void cadastrar(Item item) throws ErroDeNegocioException {
 		if (item != null && !this.existe(item.getCodigoProduto())) {
 			this.repositorioItem.cadastrar(item);
 		} else {
-			throw new ItemJaExisteException();
+			throw new ErroDeNegocioException("Produto Ja Existe !");
 		}
 	}
 
-	public void atualizar(Item item) throws ItemNaoExisteException {
+	public void atualizar(Item item) throws ErroDeNegocioException {
 		if (item != null && !this.existe(item.getCodigoProduto())) {
 			this.repositorioItem.atualizar(item);
 		} else {
-			throw new ItemNaoExisteException();
+			throw new ErroDeNegocioException("Produto Não Existe !");
 		}
 	}
 
-	public Item procurar(String codigoProduto) throws ItemNaoExisteException {
+	public Item procurar(String codigoProduto) throws ErroDeNegocioException {
 		Item resultado = this.repositorioItem.procurar(codigoProduto);
 		if (resultado == null) {
-			throw new ItemNaoExisteException();
+			throw new ErroDeNegocioException("Produto Não Existe !");
 		}
 		return resultado;
 	}
@@ -52,12 +52,12 @@ public class ControladorItem {
 		return false;
 	}
 
-	public void remover(String codigoProduto) throws ItemNaoExisteException {
+	public void remover(String codigoProduto) throws ErroDeNegocioException {
 		Item item = this.repositorioItem.procurar(codigoProduto);
 		if (item != null) {
 			this.repositorioItem.remover(codigoProduto);
 		} else {
-			throw new ItemNaoExisteException();
+			throw new ErroDeNegocioException("Produto Não Existe !");
 		}
 	}
 

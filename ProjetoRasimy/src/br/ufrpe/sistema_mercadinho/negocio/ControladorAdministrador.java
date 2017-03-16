@@ -4,7 +4,7 @@ import java.util.ArrayList;
 
 import br.ufrpe.sistema_mercadinho.dados.IRepositorioAdministrador;
 import br.ufrpe.sistema_mercadinho.dados.RepositorioAdministrador;
-import br.ufrpe.sistema_mercadinho.exceptions.*;
+import br.ufrpe.sistema_mercadinho.exceptions.ErroDeNegocioException;
 import br.ufrpe.sistema_mercadinho.negocio.beans.Administrador;
 
 public class ControladorAdministrador {
@@ -15,28 +15,28 @@ public class ControladorAdministrador {
 	}
 
 	public void cadastrar(Administrador adm)
-			throws AdministradorJaCadastradoException {
+			throws ErroDeNegocioException {
 		if (adm != null && !this.existe(adm.getCpf())) {
 			this.repositorioAdm.cadastrar(adm);
 		} else {
-			throw new AdministradorJaCadastradoException();
+			throw new ErroDeNegocioException("Administrador já Existe !");
 		}
 	}
 
 	public void atualizar(Administrador adm)
-			throws AdministradorNaoExisteException {
+			throws ErroDeNegocioException {
 		if (adm != null && this.existe(adm.getCpf())) {
 			this.repositorioAdm.atualizar(adm);
 		} else {
-			throw new AdministradorNaoExisteException();
+			throw new ErroDeNegocioException("Administrador não Existe !");
 		}
 	}
 
 	public Administrador procurar(String cpf)
-			throws AdministradorNaoExisteException {
+			throws ErroDeNegocioException {
 		Administrador resultado = this.repositorioAdm.procurar(cpf);
 		if (resultado == null) {
-			throw new AdministradorNaoExisteException();
+			throw new ErroDeNegocioException("Administrador Não Existe !");
 		}
 		return resultado;
 	}
@@ -56,12 +56,12 @@ public class ControladorAdministrador {
 		return resultado;
 	}
 
-	public void remover(String cpf) throws AdministradorNaoExisteException {
+	public void remover(String cpf) throws ErroDeNegocioException {
 		Administrador administrador = this.repositorioAdm.procurar(cpf);
 		if (administrador != null) {
 			this.repositorioAdm.remover(cpf);
 		} else {
-			throw new AdministradorNaoExisteException();
+			throw new ErroDeNegocioException("Administrador Não Existe !");
 		}
 	}
 }

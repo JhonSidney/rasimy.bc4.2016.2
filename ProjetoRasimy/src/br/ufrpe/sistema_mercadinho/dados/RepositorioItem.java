@@ -1,10 +1,17 @@
 package br.ufrpe.sistema_mercadinho.dados;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import br.ufrpe.sistema_mercadinho.negocio.beans.Item;
 
-public class RepositorioItem implements IRepositorioItem {
+public class RepositorioItem implements IRepositorioItem, Serializable {
 
 	// ATRIBUTOS
 	private ArrayList<Item> itens;
@@ -12,18 +19,64 @@ public class RepositorioItem implements IRepositorioItem {
 
 	private RepositorioItem() {
 		this.itens = new ArrayList<Item>();
-
 	}
 
-	
-	
-	
 	public static RepositorioItem getInstance() {
 
 		if (instancia == null) {
 			instancia = new RepositorioItem();
 		}
 		return instancia;
+	}
+
+	public static RepositorioItem lerDoArquivo() throws IOException {
+
+		RepositorioItem instanciaLocal = null;
+		File in = new File("arquivos\\cadastroItens\\itens.dat");
+		FileInputStream fis = null;
+		ObjectInputStream ois = null;
+
+		try {
+			fis = new FileInputStream(in);
+			ois = new ObjectInputStream(fis);
+			Object o = ois.readObject();
+			instanciaLocal = (RepositorioItem) o;
+		} catch (Exception e) {
+			instanciaLocal = new RepositorioItem();
+		} finally {
+			if (ois != null) {
+				try {
+					ois.close();
+				} catch (IOException e) {
+					/* Silence exception */
+				}
+			}
+		}
+		return instanciaLocal;
+	}
+
+	public void salvarArquivo() {
+		if (instancia == null) {
+			return;
+		}
+		File out = new File("arquivos\\cadastroItens\\itens.dat");
+		FileOutputStream fos = null;
+		ObjectOutputStream oos = null;
+
+		try {
+			fos = new FileOutputStream(out);
+			oos = new ObjectOutputStream(fos);
+			oos.writeObject(instancia);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			if (oos != null) {
+				try {
+					oos.close();
+				} catch (IOException e) {
+					/* Silent */}
+			}
+		}
 	}
 
 	@Override

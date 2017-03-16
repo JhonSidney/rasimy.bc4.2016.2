@@ -17,7 +17,7 @@ public class ControladorLogin {
 		this.funcionario = RepositorioFuncionario.getInstance();
 	}
 
-	
+	 
 	public boolean efetuarLogin(String cpf, String senha) {
 		boolean igual = false;
 		Administrador a = this.administrador.procurar(cpf);

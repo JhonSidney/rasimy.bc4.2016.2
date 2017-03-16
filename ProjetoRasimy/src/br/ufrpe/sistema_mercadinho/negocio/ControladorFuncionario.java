@@ -14,26 +14,26 @@ public class ControladorFuncionario {
 		this.repositorioFuncionario = RepositorioFuncionario.getInstance();
 	}
 
-	public void cadastrar(Funcionario funcionario) throws FuncionarioJaExisteException {
+	public void cadastrar(Funcionario funcionario) throws ErroDeNegocioException {
 		if (funcionario != null && !this.existe(funcionario.getCpf())) {
 			this.repositorioFuncionario.cadastrar(funcionario);
 		} else {
-			throw new FuncionarioJaExisteException();
+			throw new ErroDeNegocioException("Funcionario Ja Existe !");
 		}
 	}
 
-	public void atualizar(Funcionario funcionario) throws FuncionarioNaoExisteException {
+	public void atualizar(Funcionario funcionario) throws ErroDeNegocioException {
 		if (funcionario != null && this.existe(funcionario.getCpf())) {
 			this.repositorioFuncionario.atualizar(funcionario);
 		} else {
-			throw new FuncionarioNaoExisteException();
+			throw new ErroDeNegocioException("Funcionario Não Existe !");
 		}
 	}
 
-	public Funcionario procurar(String cpf) throws FuncionarioNaoExisteException {
+	public Funcionario procurar(String cpf) throws ErroDeNegocioException {
 		Funcionario resultado = this.repositorioFuncionario.procurar(cpf);
 		if (resultado == null) {
-			throw new FuncionarioNaoExisteException();
+			throw new ErroDeNegocioException("Funcionario Não Existe !");
 		}
 		return resultado;
 	}
@@ -52,13 +52,13 @@ public class ControladorFuncionario {
 		return false;
 	}
 
-	public void remover(String cpf) throws FuncionarioNaoExisteException {
+	public void remover(String cpf) throws ErroDeNegocioException {
 		Funcionario funcionario = this.repositorioFuncionario.procurar(cpf);
 
 		if (funcionario != null) {
 			this.repositorioFuncionario.remover(cpf);
 		} else {
-			throw new FuncionarioNaoExisteException();
+			throw new ErroDeNegocioException("Funcionario Não Existe !");
 		}
 	}
 
